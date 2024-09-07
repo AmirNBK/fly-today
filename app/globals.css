@@ -11,4 +11,20 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #F3F3F3;
+
+
+  .rtl {
+    direction: rtl;
+  }
+
+  .p-dropdown .p-dropdown-label {
+    font-family: '__IranSans_3d9ef6';
+    font-size: 14px;
+  }
+
+  .p-dropdown-panel .p-dropdown-items {
+    font-family: '__IranSans_3d9ef6';
+    direction: rtl;
+    font-size: 14px;
+  }
 }
