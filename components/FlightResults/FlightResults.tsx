@@ -4,7 +4,7 @@ import SortingComponent from '../SortingComponent/SortingComponent';
 const FlightResults = () => {
 
     return (
-        <div className='FlightResults flex flex-col items-end w-8/12 gap-1'>
+        <div className='FlightResults flex flex-col items-end w-full gap-1'>
             <h2 className=' font-bold text-[#464646] text-xl'>
                 بلیط هواپیمای تهران به استانبول
             </h2>
