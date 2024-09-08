@@ -27,4 +27,23 @@ body {
     direction: rtl;
     font-size: 14px;
   }
+
+  .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background-color: #1773dc;
+  }
+
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    padding: 14px;
+  }
+
+  .p-tabview .p-tabview-nav {
+    font-family: '__IranSans_3d9ef6';
+    align-items: center;
+    gap: 15px;
+  }
+
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    font-weight: 300;
+
+  }
 }

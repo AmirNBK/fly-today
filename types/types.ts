@@ -14,3 +14,11 @@ export interface SingleFilterProps {
     isCheckboxFilter?: boolean;
     isRangeFilter?: boolean;
 }
+
+export interface FlightOptionsProps {
+    isCharter: boolean;
+    classType: string;
+    availableSeats: number;
+    flightNumber: string;
+    provider: string;
+}

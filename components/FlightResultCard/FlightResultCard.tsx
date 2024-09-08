@@ -3,6 +3,8 @@ import React from 'react';
 import flightIcon from '@/assets/icons/flightIcon.png'
 import FlightRoute from './FlightRoute/FlightRoute';
 import TicketDetails from './TicketDetails/TicketDetails';
+import FlightOptions from './FlightOptions/FlightOptions';
+import FlightExtraDetails from './FlightExtraDetails/FlightExtraDetails';
 
 const FlightResultCard = () => {
     return (
@@ -30,6 +32,18 @@ const FlightResultCard = () => {
                 </div>
 
             </div>
+
+
+            <FlightOptions
+                isCharter={true}
+                classType="اکونومی"
+                availableSeats={7}
+                flightNumber="7856"
+                provider="پرایس لاین"
+            />
+
+            <FlightExtraDetails />
+
         </div>
     );
 };
