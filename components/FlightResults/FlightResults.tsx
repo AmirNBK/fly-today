@@ -1,5 +1,6 @@
 import React from 'react';
 import SortingComponent from '../SortingComponent/SortingComponent';
+import FlightResultCard from '../FlightResultCard/FlightResultCard';
 
 const FlightResults = () => {
 
@@ -10,10 +11,15 @@ const FlightResults = () => {
             </h2>
 
             <div className='flex flex-row justify-between items-center w-full'>
-                <SortingComponent/>
+                <SortingComponent />
                 <p className='rtl text-sm'>
                     27 پرواز یافت شد . سه‌شنبه، ۱۲ اردیبهشت ۱۴۰۰
                 </p>
+            </div>
+
+
+            <div className='FlightResults__results w-full mt-6'>
+                <FlightResultCard />
             </div>
         </div>
     );

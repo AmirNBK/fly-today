@@ -6,7 +6,7 @@ const IranSans = localFont({ src: '../assets/fonts/IRANSansXFaNum-Regular.ttf' }
 export default function Home() {
 
   return (
-    <main className={`${IranSans.className} flex flex-row p-6 w-9/12 gap-11 mx-auto mt-12`}>
+    <main className={`${IranSans.className} flex flex-row p-6 w-10/12 gap-11 mx-auto mt-12`}>
       <div className="flex-[2]">
         <FlightResults />
       </div>
