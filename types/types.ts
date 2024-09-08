@@ -11,4 +11,6 @@ export interface FilterOption {
 export interface SingleFilterProps {
     filterName: string;
     options: FilterOption[];
+    isCheckboxFilter?: boolean;
+    isRangeFilter?: boolean;
 }

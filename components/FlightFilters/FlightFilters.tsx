@@ -25,10 +25,11 @@ const FlightFilters = () => {
                 </p>
             </div>
 
+            <SingleFilter filterName='محدوده قیمت' options={filterOptions} isRangeFilter />
 
-            <SingleFilter filterName='کلاس پروازی' options={filterOptions} />
+            <SingleFilter filterName='کلاس پروازی' options={filterOptions} isCheckboxFilter />
 
-            <SingleFilter filterName='نوع پرواز' options={filterOptions2} />
+            <SingleFilter filterName='نوع پرواز' options={filterOptions2} isCheckboxFilter />
 
         </div>
     );

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Checkbox, CheckboxChangeEvent } from 'primereact/checkbox';
 import { SingleFilterProps } from '@/types/types';
+import { Slider, SliderChangeEvent } from "primereact/slider";
 
-const SingleFilter: React.FC<SingleFilterProps> = ({ filterName, options }) => {
+const SingleFilter: React.FC<SingleFilterProps> = ({ filterName, options, isCheckboxFilter, isRangeFilter }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [range, setRange] = useState<[number, number]>([20000, 5000000]);
     const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
     const onFilterOptionsChange = (e: CheckboxChangeEvent) => {
@@ -18,6 +20,7 @@ const SingleFilter: React.FC<SingleFilterProps> = ({ filterName, options }) => {
     const toggleAccordion = () => {
         setIsOpen(!isOpen);
     };
+
 
     return (
         <div className=" border-t  border-#eee py-2">
@@ -42,24 +45,47 @@ const SingleFilter: React.FC<SingleFilterProps> = ({ filterName, options }) => {
 
             </button>
             <div
-                className={`transition-max-height duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-96' : 'max-h-0'}`}
+                className={`transition-max-height duration-500 ease-in-out overflow-hidden ${isOpen ? `max-h-96 ${isRangeFilter && 'py-12 px-6'}` : 'max-h-0'}`}
             >
-                <div className="p-4 space-y-2 flex flex-col gap-2">
-                    {options.map(option => (
-                        <div key={option.value} className="flex items-center rtl gap-4">
-                            <Checkbox
-                                inputId={option.value}
-                                name="options"
-                                value={option.value}
-                                onChange={onFilterOptionsChange}
-                                checked={selectedOptions.includes(option.value)}
-                            />
-                            <label htmlFor={option.value} className="ml-2 cursor-pointer text-sm">
-                                {option.label}
-                            </label>
+
+                {isCheckboxFilter &&
+                    <div className="p-4 space-y-2 flex flex-col gap-2">
+                        {options.map(option => (
+                            <div key={option.value} className="flex items-center rtl gap-4">
+                                <Checkbox
+                                    inputId={option.value}
+                                    name="options"
+                                    value={option.value}
+                                    onChange={onFilterOptionsChange}
+                                    checked={selectedOptions.includes(option.value)}
+                                />
+                                <label htmlFor={option.value} className="ml-2 cursor-pointer text-sm">
+                                    {option.label}
+                                </label>
+                            </div>
+                        ))}
+                    </div>
+                }
+
+
+                {isRangeFilter &&
+                    <>
+                        <Slider value={range} onChange={(e: SliderChangeEvent) => setRange(e.value as [number, number])} className="w-14rem" range
+                            max={10000000} min={0}
+                        />
+
+                        <div className='flex flex-row justify-between w-full mt-6'>
+                            <p className='rtl'>
+                                {range[0].toLocaleString()} تومان
+                            </p>
+
+                            <p className='rtl'>
+                                {range[1].toLocaleString()} تومان
+                            </p>
+
                         </div>
-                    ))}
-                </div>
+                    </>
+                }
             </div>
         </div>
     );
