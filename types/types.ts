@@ -22,3 +22,14 @@ export interface FlightOptionsProps {
     flightNumber: string;
     provider: string;
 }
+
+export interface CostItem {
+    label: string;
+    amount: string;
+    isBold?: boolean;
+    isHighlight?: boolean;
+}
+
+export interface PassengersCostInfoProps {
+    costItems: CostItem[];
+}

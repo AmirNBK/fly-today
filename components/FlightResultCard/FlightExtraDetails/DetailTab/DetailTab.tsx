@@ -3,9 +3,17 @@ import localFont from 'next/font/local'
 import flightIcon from '@/assets/icons/flightIcon.png'
 import Image from 'next/image';
 import FlightDetailedInfo from './FlightDetailedInfo/FlightDetailedInfo';
+import PassengersCostInfo from './PassengersCostInfo/PassengersCostInfo';
 const IranSans = localFont({ src: '../../../../assets/fonts/IRANSansXFaNum-Regular.ttf' })
 
 const DetailTab = () => {
+    const costItems = [
+        { label: 'x 2 بزرگسال', amount: '۱,۳۷۰,۰۰۰ تومان' },
+        { label: 'x 1 کودک', amount: '۱,۳۷۰,۰۰۰ تومان' },
+        { label: 'x 1 نوزاد', amount: '۱,۳۷۰,۰۰۰ تومان' },
+        { label: 'مجموع :', amount: '۱,۳۷۰,۰۰۰ تومان', isBold: true, isHighlight: true }
+    ];
+
     return (
         <div className={`${IranSans.className} DetailTab flex flex-col items-start mt-3`}>
             <h1 className=' font-bold text-lg'>
@@ -30,6 +38,9 @@ const DetailTab = () => {
                 flightClass="اکونومی"
                 fareClass="A"
             />
+
+
+            <PassengersCostInfo costItems={costItems} />
 
         </div>
     );
