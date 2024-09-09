@@ -3,15 +3,15 @@ import React from 'react';
 import flightIcon from '@/assets/icons/flightIcon.png';
 import FlightRoute from './FlightRoute/FlightRoute';
 import TicketDetails from './TicketDetails/TicketDetails';
-import FlightOptions from './FlightOptions/FlightOptions';
-import FlightExtraDetails from './FlightExtraDetails/FlightExtraDetails';
 import { FlightResultCardProps } from '@/types/types';
+import FlightResultCardFooter from './FlightResultCardFooter/FlightResultCardFooter';
 
 const FlightResultCard: React.FC<FlightResultCardProps> = ({
     airlineName,
     flightRouteProps,
     ticketDetailsProps,
     flightOptionsProps,
+    flightId, 
 }) => {
     return (
         <div className="FlightResultCard flex flex-col bg-white w-full justify-between rounded-sm">
@@ -30,9 +30,7 @@ const FlightResultCard: React.FC<FlightResultCardProps> = ({
                 </div>
             </div>
 
-            <FlightOptions {...flightOptionsProps} />
-
-            <FlightExtraDetails />
+            <FlightResultCardFooter flightOptionsProps={flightOptionsProps} flightId={flightId} />
         </div>
     );
 };

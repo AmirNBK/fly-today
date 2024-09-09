@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
-
+import { AppProvider } from '@/context/AppContext';
 
 export const metadata: Metadata = {
   title: "خرید بلیط هواپیما",
@@ -17,13 +16,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <PrimeReactProvider>
-        <body
-          className={`antialiased`}
-        >
-          {children}
-        </body>
-      </PrimeReactProvider>
+      <AppProvider>
+        <PrimeReactProvider>
+          <body
+            className={`antialiased`}
+          >
+            {children}
+          </body>
+        </PrimeReactProvider>
+      </AppProvider>
     </html>
   );
 }

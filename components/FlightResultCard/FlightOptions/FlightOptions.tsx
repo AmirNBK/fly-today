@@ -1,16 +1,20 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import arrow from '@/assets/icons/arrow.svg'
+import arrow from '@/assets/icons/arrow.svg';
 import { FlightOptionsProps } from '@/types/types';
+import { useAppContext } from '@/context/AppContext';
 
-const FlightOptions: React.FC<FlightOptionsProps> = ({
+const FlightOptions: React.FC<FlightOptionsProps & { flightId: string }> = ({
     isCharter,
     classType,
     availableSeats,
     flightNumber,
     provider,
+    flightId,
 }) => {
+    const { toggleExtraDetails } = useAppContext();
+
     return (
         <div className='flex flex-row-reverse w-full justify-between items-center border-t border-[#eeeeee]'>
             <div className='flex flex-row-reverse gap-4 items-center text-sm px-6 py-2'>
@@ -35,8 +39,8 @@ const FlightOptions: React.FC<FlightOptionsProps> = ({
                 </p>
             </div>
 
-            <div className='px-16 flex flex-row-reverse items-center gap-2'>
-                <p className='text-[#ff7913]'>
+            <div className='px-16 flex flex-row-reverse items-center gap-2 cursor-pointer'>
+                <p className='text-[#ff7913]' onClick={() => toggleExtraDetails(flightId)}>
                     جزئیات بیشتر
                 </p>
                 <Image src={arrow} alt='arrowIcon' />

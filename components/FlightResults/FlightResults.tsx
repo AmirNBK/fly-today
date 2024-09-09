@@ -19,51 +19,52 @@ const FlightResults = () => {
 
 
             <div className='FlightResults__results w-full mt-6 flex flex-col gap-10'>
-                <FlightResultCard
-                    airlineName="ماهان"
-                    flightRouteProps={{
-                        originCity: "تهران (THR)",
-                        destinationCity: "استانبول (IST)",
-                        startTime: "۱۲:۴۵",
-                        endTime: "۱۷:۳۰",
-                        estimatedTime: "3 ساعت و 45 دقیقه",
-                    }}
-                    ticketDetailsProps={{
-                        passengerCount: 1,
-                        price: 1370000,
-                        currency: "تومان",
-                    }}
-                    flightOptionsProps={{
-                        isCharter: true,
-                        classType: "اکونومی",
-                        availableSeats: 7,
-                        flightNumber: "7856",
-                        provider: "پرایس لاین",
-                    }}
-                />
-
-                <FlightResultCard
-                    airlineName="كاسپين"
-                    flightRouteProps={{
-                        originCity: "تهران (THR)",
-                        destinationCity: "استانبول (IST)",
-                        startTime: "۱۲:۴۵",
-                        endTime: "۱۷:۳۰",
-                        estimatedTime: "3 ساعت و 45 دقیقه",
-                    }}
-                    ticketDetailsProps={{
-                        passengerCount: 1,
-                        price: 1370000,
-                        currency: "تومان",
-                    }}
-                    flightOptionsProps={{
-                        isCharter: true,
-                        classType: "اکونومی",
-                        availableSeats: 7,
-                        flightNumber: "7856",
-                        provider: "پرایس لاین",
-                    }}
-                />
+            <FlightResultCard
+                flightId="flight1" 
+                airlineName="ماهان"
+                flightRouteProps={{
+                    originCity: "تهران (THR)",
+                    destinationCity: "استانبول (IST)",
+                    startTime: "۱۲:۴۵",
+                    endTime: "۱۷:۳۰",
+                    estimatedTime: "3 ساعت و 45 دقیقه",
+                }}
+                ticketDetailsProps={{
+                    passengerCount: 1,
+                    price: 1370000,
+                    currency: "تومان",
+                }}
+                flightOptionsProps={{
+                    isCharter: true,
+                    classType: "اکونومی",
+                    availableSeats: 7,
+                    flightNumber: "7856",
+                    provider: "پرایس لاین",
+                }}
+            />
+            <FlightResultCard
+                flightId="flight2"
+                airlineName="ایران ایر"
+                flightRouteProps={{
+                    originCity: "تهران (IKA)",
+                    destinationCity: "مشهد (MHD)",
+                    startTime: "۱۰:۰۰",
+                    endTime: "۱۱:۳۰",
+                    estimatedTime: "1 ساعت و 30 دقیقه",
+                }}
+                ticketDetailsProps={{
+                    passengerCount: 1,
+                    price: 1200000,
+                    currency: "تومان",
+                }}
+                flightOptionsProps={{
+                    isCharter: false,
+                    classType: "بیزنس",
+                    availableSeats: 5,
+                    flightNumber: "1234",
+                    provider: "ایران ایر",
+                }}
+            />
             </div>
         </div>
     );

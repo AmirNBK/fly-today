@@ -36,6 +36,7 @@ export interface PassengersCostInfoProps {
 
 export interface FlightResultCardProps {
     airlineName: string;
+    flightId : string
     flightRouteProps: {
         originCity: string;
         destinationCity: string;
