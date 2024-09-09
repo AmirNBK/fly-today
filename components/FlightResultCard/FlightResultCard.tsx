@@ -1,49 +1,38 @@
 import Image from 'next/image';
 import React from 'react';
-import flightIcon from '@/assets/icons/flightIcon.png'
+import flightIcon from '@/assets/icons/flightIcon.png';
 import FlightRoute from './FlightRoute/FlightRoute';
 import TicketDetails from './TicketDetails/TicketDetails';
 import FlightOptions from './FlightOptions/FlightOptions';
 import FlightExtraDetails from './FlightExtraDetails/FlightExtraDetails';
+import { FlightResultCardProps } from '@/types/types';
 
-const FlightResultCard = () => {
+const FlightResultCard: React.FC<FlightResultCardProps> = ({
+    airlineName,
+    flightRouteProps,
+    ticketDetailsProps,
+    flightOptionsProps,
+}) => {
     return (
-        <div className='FlightResultCard flex flex-col bg-white w-full justify-between rounded-sm'>
-            <div className='flex flex-row-reverse gap-12 items-center'>
-                <div className='flex flex-row items-center gap-3 justify-end flex-[0.8] p-8'>
-                    <p className='text-sm'>
-                        ماهان
-                    </p>
-                    <Image src={flightIcon} alt='icon' />
+        <div className="FlightResultCard flex flex-col bg-white w-full justify-between rounded-sm">
+            <div className="flex flex-row-reverse gap-12 items-center">
+                <div className="flex flex-row items-center gap-3 justify-end flex-[0.8] p-8">
+                    <p className="text-sm">{airlineName}</p>
+                    <Image src={flightIcon} alt="icon" />
                 </div>
 
-                <div className='flex-[3] p-8'>
-                    <FlightRoute
-                        originCity="تهران (THR)"
-                        destinationCity="استانبول (IST)"
-                        startTime="۱۲:۴۵"
-                        endTime="۱۷:۳۰"
-                        estimatedTime="3 ساعت و 45 دقیقه"
-                    />
+                <div className="flex-[3] p-8">
+                    <FlightRoute {...flightRouteProps} />
                 </div>
 
-                <div className='flex-[1.5] border-r border-[#eeeeee] p-8'>
-                    <TicketDetails />
+                <div className="flex-[1.5] border-r border-[#eeeeee] p-8">
+                    <TicketDetails {...ticketDetailsProps} />
                 </div>
-
             </div>
 
-
-            <FlightOptions
-                isCharter={true}
-                classType="اکونومی"
-                availableSeats={7}
-                flightNumber="7856"
-                provider="پرایس لاین"
-            />
+            <FlightOptions {...flightOptionsProps} />
 
             <FlightExtraDetails />
-
         </div>
     );
 };

@@ -33,3 +33,26 @@ export interface CostItem {
 export interface PassengersCostInfoProps {
     costItems: CostItem[];
 }
+
+export interface FlightResultCardProps {
+    airlineName: string;
+    flightRouteProps: {
+        originCity: string;
+        destinationCity: string;
+        startTime: string;
+        endTime: string;
+        estimatedTime: string;
+    };
+    ticketDetailsProps: {
+        passengerCount: number;
+        price: number;
+        currency: string;
+    };
+    flightOptionsProps: {
+        isCharter: boolean;
+        classType: string;
+        availableSeats: number;
+        flightNumber: string;
+        provider: string;
+    };
+}
