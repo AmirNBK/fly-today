@@ -46,4 +46,48 @@ body {
     font-weight: 300;
 
   }
+
+  .p-paginator .p-dropdown {
+    display: none;
+  }
+
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #1773dc;
+    color: #fff;
+  }
+
+  .p-paginator .p-paginator-pages .p-paginator-page {
+    border-radius: 6px;
+  }
+
+  .p-paginator .p-paginator-pages .p-paginator-page {
+    background: #fff;
+    border: solid 1px #eee;
+    font-family: '__IranSans_3d9ef6';
+
+  }
+
+  .p-paginator-pages {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    direction: rtl;
+  }
+
+  .p-paginator .p-paginator-pages .p-paginator-page {
+    min-width: 35px;
+    height: 35px;
+  }
+
+  .p-paginator {
+    flex-direction: row-reverse;
+  }
+
+  .p-paginator-next , .p-paginator-prev {
+    transform: rotate(180deg);
+  }
+
+  .p-paginator-last , .p-paginator-first  {
+    display: none;
+  }
 }

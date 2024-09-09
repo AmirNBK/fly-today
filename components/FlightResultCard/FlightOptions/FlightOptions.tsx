@@ -13,7 +13,8 @@ const FlightOptions: React.FC<FlightOptionsProps & { flightId: string }> = ({
     provider,
     flightId,
 }) => {
-    const { toggleExtraDetails } = useAppContext();
+    const { toggleExtraDetails, extraDetailsToggle } = useAppContext();
+
 
     return (
         <div className='flex flex-row-reverse w-full justify-between items-center border-t border-[#eeeeee]'>
@@ -43,7 +44,7 @@ const FlightOptions: React.FC<FlightOptionsProps & { flightId: string }> = ({
                 <p className='text-[#ff7913]' onClick={() => toggleExtraDetails(flightId)}>
                     جزئیات بیشتر
                 </p>
-                <Image src={arrow} alt='arrowIcon' />
+                <Image src={arrow} alt='arrowIcon' className={ `${extraDetailsToggle[flightId] ? 'rotate-180 transition duration-500' : 'rotate-0 transition duration-500'}`} />
             </div>
         </div>
     );
