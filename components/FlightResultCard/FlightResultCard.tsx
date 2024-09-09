@@ -17,7 +17,7 @@ const FlightResultCard: React.FC<FlightResultCardProps> = ({
         <div className="FlightResultCard flex flex-col bg-white w-full justify-between rounded-sm">
             <div className="flex flex-row-reverse gap-12 items-center">
                 <div className="flex flex-row items-center gap-3 justify-end flex-[0.8] p-8">
-                    <p className="text-sm">{airlineName}</p>
+                    <p className="text-sm whitespace-nowrap">{airlineName}</p>
                     <Image src={flightIcon} alt="icon" />
                 </div>
 

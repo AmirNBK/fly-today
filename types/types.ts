@@ -45,7 +45,6 @@ export interface FlightResultCardProps {
         estimatedTime: string;
     };
     ticketDetailsProps: {
-        passengerCount: number;
         price: number;
         currency: string;
     };
@@ -57,3 +56,39 @@ export interface FlightResultCardProps {
         provider: string;
     };
 }
+
+export interface AirportFilterItem {
+    airportId: string;
+    resultCount: number;
+  }
+  
+  export interface AirportFilter {
+    filterName: string;
+    items: {
+      [key: string]: AirportFilterItem;
+    };
+  }
+  
+  export interface BaggageFilterItem {
+    baggageName: string;
+    resultCount: number;
+  }
+  
+  export interface BaggageFilter {
+    filterName: string;
+    items: {
+      [key: string]: BaggageFilterItem;
+    };
+  }
+  
+  export interface Filter {
+    airports: AirportFilter[];
+    baggage: BaggageFilter[];
+  }
+  
+  export interface FlightData {
+    airTripType: string;
+    airTripTypeStr: string;
+    filter: Filter;
+  }
+  
