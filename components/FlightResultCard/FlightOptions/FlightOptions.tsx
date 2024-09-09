@@ -31,7 +31,7 @@ const FlightOptions: React.FC<FlightOptionsProps & { flightId: string }> = ({
                     {availableSeats} صندلی خالی
                 </p>
 
-                <p className='text-[#464646]'>
+                <p className='text-[#464646] rtl'>
                     ‏شماره پرواز : {flightNumber}
                 </p>
 

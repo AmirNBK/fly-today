@@ -55,3 +55,16 @@ export const convertTimeToPersianFormat = (timeString) => {
 
     return persianTime;
 }
+
+export const getCabinClass = (cabinClassCode) => {
+    switch (cabinClassCode) {
+      case 'Y':
+        return 'اکونومی';
+      case 'J':
+        return 'بیزینس';
+      case 'F':
+        return 'First Class';
+      default:
+        return 'Unknown Class';
+    }
+  }

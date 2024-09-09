@@ -3,7 +3,7 @@ import SortingComponent from '../SortingComponent/SortingComponent';
 import FlightResultCard from '../FlightResultCard/FlightResultCard';
 import PaginatorComponent from '../PaginatorComponent/PaginatorComponent';
 import { FlightData } from '@/types/types';
-import { convertTimeToPersianFormat, extractDateTimeInfo } from '@/commonFuncs/functions'
+import { convertTimeToPersianFormat, extractDateTimeInfo, getCabinClass } from '@/commonFuncs/functions'
 
 
 const FlightResults = ({ data }: { data: FlightData }) => {
@@ -58,39 +58,15 @@ const FlightResults = ({ data }: { data: FlightData }) => {
                                 currency: "تومان",
                             }}
                             flightOptionsProps={{
-                                isCharter: true,
-                                classType: "اکونومی",
-                                availableSeats: 7,
-                                flightNumber: "7856",
-                                provider: "پرایس لاین",
+                                isCharter: item.isCharter,
+                                classType:  getCabinClass(item.originDestinationOptions[0].flightSegments[0].cabinClassCode),
+                                availableSeats: item.originDestinationOptions[0].flightSegments[0].seatsRemaining,
+                                flightNumber: item.originDestinationOptions[0].flightSegments[0].operatingAirline.flightNumber || 7856,
+                                provider: airlineNameFa,
                             }}
                         />
                     )
                 })}
-                {/*                 
-                <FlightResultCard
-                    flightId="flight2"
-                    airlineName="ایران ایر"
-                    flightRouteProps={{
-                        originCity: "تهران (IKA)",
-                        destinationCity: "مشهد (MHD)",
-                        startTime: "۱۰:۰۰",
-                        endTime: "۱۱:۳۰",
-                        estimatedTime: "1 ساعت و 30 دقیقه",
-                    }}
-                    ticketDetailsProps={{
-                        passengerCount: 1,
-                        price: 1200000,
-                        currency: "تومان",
-                    }}
-                    flightOptionsProps={{
-                        isCharter: false,
-                        classType: "بیزنس",
-                        availableSeats: 5,
-                        flightNumber: "1234",
-                        provider: "ایران ایر",
-                    }}
-                /> */}
             </div>
 
             <PaginatorComponent />
