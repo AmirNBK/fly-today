@@ -6,14 +6,15 @@ import { FlightData } from '@/types/types';
 import { convertTimeToPersianFormat, extractDateTimeInfo, getCabinClass } from '@/commonFuncs/functions'
 
 
-const FlightResults = ({ data }: { data: FlightData }) => {
+const FlightResults = ({ data , allData }: { data: FlightData , allData : any }) => {
+    
 
-    const airlinesDict = data.additionalData.airlines.reduce((acc, airline) => {
+    const airlinesDict = allData.additionalData.airlines.reduce((acc, airline) => {
         acc[airline.iata] = airline.nameFa;
         return acc;
     }, {});
 
-    const airportsDict = data.additionalData.airports.reduce((acc, airport) => {
+    const airportsDict = allData.additionalData.airports.reduce((acc, airport) => {
         acc[airport.iata] = airport.cityFa;
         return acc;
     }, {});
@@ -28,13 +29,13 @@ const FlightResults = ({ data }: { data: FlightData }) => {
             <div className='flex flex-row justify-between items-center w-full'>
                 <SortingComponent />
                 <p className='rtl text-sm'>
-                    {data.pricedItineraries.length} پرواز یافت شد . سه‌شنبه، 25 مهر 1402
+                    {data.length} پرواز یافت شد . سه‌شنبه، 25 مهر 1402
                 </p>
             </div>
 
 
             <div className='FlightResults__results w-full mt-6 flex flex-col gap-10'>
-                {data.pricedItineraries.map((item, index) => {
+                {data.map((item, index) => {
                     const airlineNameFa = airlinesDict[item.validatingAirlineCode] || item.validatingAirlineCode;
                     const originCityFa = airportsDict[item.originDestinationOptions[0].flightSegments[0].departureAirportLocationCode] || item.originDestinationOptions[0].flightSegments[0].departureAirportLocationCode;
                     const destinationCityFa = airportsDict[item.originDestinationOptions[0].flightSegments[0].arrivalAirportLocationCode] || item.originDestinationOptions[0].flightSegments[0].arrivalAirportLocationCode;
@@ -69,7 +70,7 @@ const FlightResults = ({ data }: { data: FlightData }) => {
                 })}
             </div>
 
-            <PaginatorComponent />
+            <PaginatorComponent data={allData} />
         </div>
     );
 };
