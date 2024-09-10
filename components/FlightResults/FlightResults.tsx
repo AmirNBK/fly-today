@@ -9,19 +9,36 @@ import useAirportDictionary from '@/hooks/useAirportDictionary';
 import { totalData } from '@/types/types';
 import { sortFlights, SortOption } from '@/utils/sortFlightsUtils';
 
-const FlightResults = ({ allData, CurrentPage, selectedSortingOption }: { allData: totalData, CurrentPage: number, selectedSortingOption: SortOption }) => {
+const FlightResults = ({
+    allData, 
+    CurrentPage, 
+    selectedSortingOption, 
+    arrivalAirports 
+}: { 
+    allData: totalData, 
+    CurrentPage: number, 
+    selectedSortingOption: SortOption, 
+    arrivalAirports: string[] 
+}) => {
 
+    // Filter the flights based on the list of arrival airports
+    const filteredFlights = allData.pricedItineraries.filter(flight => {
+        const flightSegment = flight.originDestinationOptions[0].flightSegments[0];
+        return arrivalAirports.length > 0 
+            ? arrivalAirports.includes(flightSegment.arrivalAirportLocationCode)
+            : true;
+    });
 
     // Sort the flights based on the selected option
-    const sortedFlights = sortFlights(allData.pricedItineraries, selectedSortingOption);
+    const sortedFlights = sortFlights(filteredFlights, selectedSortingOption);
 
     // Paginate the sorted flights
     const flightsData = getFlightsPerPage(CurrentPage, sortedFlights);
 
-    // Create a dictionary of airlines to find airline persian name easy
+    // Create a dictionary of airlines to find airline Persian name easily
     const airlinesDictionary = useAirlineDictionary(allData.additionalData);
 
-    // Create a dictionary of airports to find airport persian name easy
+    // Create a dictionary of airports to find airport Persian name easily
     const airportsDictionary = useAirportDictionary(allData.additionalData);
 
     return (
@@ -33,10 +50,9 @@ const FlightResults = ({ allData, CurrentPage, selectedSortingOption }: { allDat
             <div className='flex flex-row justify-between items-center w-full'>
                 <SortingComponent />
                 <p className='rtl text-sm'>
-                    {allData.pricedItineraries.length} پرواز یافت شد . سه‌شنبه، 25 مهر 1402
+                    {filteredFlights.length} پرواز یافت شد . سه‌شنبه، 25 مهر 1402
                 </p>
             </div>
-
 
             <div className='FlightResults__results w-full mt-6 flex flex-col gap-10'>
                 {flightsData.map((item, index) => {

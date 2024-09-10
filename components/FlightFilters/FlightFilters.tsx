@@ -2,7 +2,7 @@
 import React from 'react';
 import SingleFilter from '../SingleFilter/SingleFilter';
 
-const FlightFilters = () => {
+const FlightFilters = ({filters} : {filters : any}) => {
     const filterOptions = [
         { label: 'اکونومی', value: 'economy' },
         { label: 'بیزینس', value: 'business' },
@@ -10,8 +10,8 @@ const FlightFilters = () => {
     ];
 
     const filterOptions2 = [
-        { label: 'پروازهای سیستمی', value: 'systematic' },
-        { label: 'پروازهای چارتری', value: 'Chart' },
+        { label: 'فرودگاه صبیحا گوکچن', value: 'saw' },
+        { label: 'فرودگاه استانبول', value: 'ist' },
     ];
 
     return (
@@ -25,11 +25,11 @@ const FlightFilters = () => {
                 </p>
             </div>
 
-            <SingleFilter filterName='محدوده قیمت' options={filterOptions} isRangeFilter />
+            {/* <SingleFilter filterName='محدوده قیمت' options={filterOptions} isRangeFilter /> */}
 
-            <SingleFilter filterName='کلاس پروازی' options={filterOptions} isCheckboxFilter />
+            {/* <SingleFilter filterName='کلاس پروازی' options={filterOptions} isCheckboxFilter /> */}
 
-            <SingleFilter filterName='نوع پرواز' options={filterOptions2} isCheckboxFilter />
+            <SingleFilter filterName='فرودگاه های مقصد' urlName={'ArrivalAirport'} options={filterOptions2} isCheckboxFilter />
 
         </div>
     );

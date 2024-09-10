@@ -2,6 +2,7 @@ export interface PageQueryParams {
   searchParams: {
     sort: string;
     page?: string;
+    ArrivalAirport?: string
   };
 }
 
@@ -20,6 +21,7 @@ export interface SingleFilterProps {
   options: FilterOption[];
   isCheckboxFilter?: boolean;
   isRangeFilter?: boolean;
+  urlName : string;
 }
 
 export interface flightOptionsProps {
