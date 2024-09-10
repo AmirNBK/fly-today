@@ -1,5 +1,6 @@
 export interface PageQueryParams {
   searchParams: {
+    sort: string;
     page?: string;
   };
 }

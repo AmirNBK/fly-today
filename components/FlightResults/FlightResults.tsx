@@ -7,10 +7,16 @@ import { getFlightsPerPage } from '@/utils/paginationUtils';
 import useAirlineDictionary from '@/hooks/useAirlineDictionary';
 import useAirportDictionary from '@/hooks/useAirportDictionary';
 import { totalData } from '@/types/types';
+import { sortFlights, SortOption } from '@/utils/sortFlightsUtils';
 
-const FlightResults = ({ allData, CurrentPage }: { allData: totalData, CurrentPage: number }) => {
+const FlightResults = ({ allData, CurrentPage, selectedSortingOption }: { allData: totalData, CurrentPage: number, selectedSortingOption: SortOption }) => {
 
-    const flightsData = getFlightsPerPage(CurrentPage, allData.pricedItineraries);
+
+    // Sort the flights based on the selected option
+    const sortedFlights = sortFlights(allData.pricedItineraries, selectedSortingOption);
+
+    // Paginate the sorted flights
+    const flightsData = getFlightsPerPage(CurrentPage, sortedFlights);
 
     // Create a dictionary of airlines to find airline persian name easy
     const airlinesDictionary = useAirlineDictionary(allData.additionalData);
