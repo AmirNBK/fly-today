@@ -2,22 +2,9 @@ import React from 'react';
 import localFont from 'next/font/local';
 import FlightDetailedInfo from './FlightDetailedInfo/FlightDetailedInfo';
 import PassengersCostInfo from './PassengersCostInfo/PassengersCostInfo';
-import { extractDateTimeInfo } from '@/commonFuncs/functions';
+import { DetailTabProps, FlightRouteProps, PtcFareBreakdown } from '@/types/types';
 
 const IranSans = localFont({ src: '../../../../assets/fonts/IRANSansXFaNum-Regular.ttf' });
-
-interface FlightRouteProps {
-    originCity: string;
-    destinationCity: string;
-    startTime: string;
-    endTime: string;
-    estimatedTime: string;
-}
-
-interface DetailTabProps extends FlightRouteProps {
-    airlineName: string;
-    flightData: any
-}
 
 const DetailTab: React.FC<DetailTabProps> = ({
     airlineName,
@@ -28,28 +15,30 @@ const DetailTab: React.FC<DetailTabProps> = ({
     startTime,
     endTime,
     estimatedTime,
-    flightData, 
     isCharter,
-    classType
-
+    classType,
+    pricingBreakdownPerPassenger,
+    priceFare,
+    isRefundable,
+    airplaneModel,
+    allowedBaggage,
+    fareClass,
 }) => {
-    const costItems = flightData.airItineraryPricingInfo.ptcFareBreakdown.map(item => {
-        const label = item.passengerTypeQuantity.passengerType === 'Adt' ? 'بزرگسال' : 
-                      item.passengerTypeQuantity.passengerType === 'Chd' ? 'کودک' : 
-                      'نوزاد';
+
+    const costItems = pricingBreakdownPerPassenger.map(item => {
+        const label = item.passengerTypeQuantity.passengerType === 'Adt' ? 'بزرگسال' :
+            item.passengerTypeQuantity.passengerType === 'Chd' ? 'کودک' :
+                'نوزاد';
         const amount = `${item.passengerFare.totalFare.toLocaleString()} تومان`;
         return { label: `x ${item.passengerTypeQuantity.quantity} ${label}`, amount };
-      });
-      
-      costItems.push({
+    });
+
+    costItems.push({
         label: 'مجموع :',
-        amount: `${flightData.airItineraryPricingInfo.itinTotalFare.totalFare.toLocaleString()} تومان`,
+        amount: `${priceFare.toLocaleString()} تومان`,
         isBold: true,
         isHighlight: true
-      });
-      
-    const startDate = extractDateTimeInfo(flightData.originDestinationOptions[0].flightSegments[0].departureDateTime);
-    const endDate = extractDateTimeInfo(flightData.originDestinationOptions[0].flightSegments[0].arrivalDateTime);
+    });
 
 
     return (
@@ -64,17 +53,17 @@ const DetailTab: React.FC<DetailTabProps> = ({
                 destinationCity={destinationCity}
                 startTime={startTime}
                 endTime={endTime}
-                startDate={`${startDate.persianDate} (${startDate.day} ${startDate.monthName})`}
-                endDate={`${endDate.persianDate} (${endDate.day} ${endDate.monthName})`}
+                startDate={`${startTime.persianDate} (${startTime.day} ${startTime.monthName})`}
+                endDate={`${endTime.persianDate} (${endTime.day} ${endTime.monthName})`}
                 originAirport={originCityAirportName}
                 destinationAirport={destinationCityAirportName}
                 flightDuration={estimatedTime}
                 flightType={isCharter ? 'چارتر' : 'سیستمی'}
-                isRefundable={flightData.refundMethod}
-                airplaneModel={flightData.originDestinationOptions[0].flightSegments[0].operatingAirline.equipment}
-                allowedBaggage={flightData.originDestinationOptions[0].flightSegments[0].baggage}
+                isRefundable={isRefundable}
+                airplaneModel={airplaneModel}
+                allowedBaggage={allowedBaggage}
                 flightClass={classType}
-                fareClass={flightData.originDestinationOptions[0].flightSegments[0].cabinClassCode}
+                fareClass={fareClass}
             />
 
             <PassengersCostInfo costItems={costItems} />

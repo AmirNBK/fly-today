@@ -6,9 +6,21 @@ import Image from 'next/image';
 import docs from '@/assets/icons/doc.svg';
 import DetailTab from './DetailTab/DetailTab';
 import { useAppContext } from '@/context/AppContext';
-import { FlightResultCardProps } from '@/types/types';
+import { FlightExtraDetailsProps, FlightRouteProps, PtcFareBreakdown } from '@/types/types';
 
-const FlightExtraDetails: React.FC<{ flightId: string, airlineName: string, flightRouteProps: FlightResultCardProps , flightData : any , isCharter : any , classType : any }> = ({ flightId, airlineName, flightRouteProps , flightData , isCharter , classType }) => {
+const FlightExtraDetails: React.FC<FlightExtraDetailsProps> = ({
+    flightId,
+    airlineName,
+    flightRouteProps,
+    isCharter,
+    classType,
+    pricingBreakdownPerPassenger,
+    priceFare,
+    isRefundable,
+    airplaneModel,
+    allowedBaggage,
+    fareClass
+}) => {
     const { extraDetailsToggle } = useAppContext();
 
     return (
@@ -24,7 +36,11 @@ const FlightExtraDetails: React.FC<{ flightId: string, airlineName: string, flig
                         </p>
                     </div>
                 }>
-                    <DetailTab airlineName={airlineName} {...flightRouteProps} flightData={flightData} isCharter={isCharter} classType={classType} />
+                    <DetailTab originCityAirportName={flightRouteProps.originCity} destinationCityAirportName={flightRouteProps.destinationCity} airlineName={airlineName} {...flightRouteProps} isCharter={isCharter} classType={classType} pricingBreakdownPerPassenger={pricingBreakdownPerPassenger}
+                        priceFare={priceFare} isRefundable={isRefundable}
+                        airplaneModel={airplaneModel}
+                        allowedBaggage={allowedBaggage}
+                        fareClass={fareClass} />
                 </TabPanel>
                 <TabPanel disabled header={
                     <div className='flex flex-row items-center gap-3 w-full h-full'>

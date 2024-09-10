@@ -2,15 +2,21 @@ import React from 'react';
 import SortingComponent from '../SortingComponent/SortingComponent';
 import FlightResultCard from '../FlightResultCard/FlightResultCard';
 import PaginatorComponent from '../PaginatorComponent/PaginatorComponent';
-import { FlightData } from '@/types/types';
-import { convertTimeToPersianFormat, createAirlinesDict, createAirportsDict, extractDateTimeInfo, getCabinClass } from '@/commonFuncs/functions'
+import { convertTimeToPersianFormat, extractDateTimeInfo, getCabinClass } from '@/commonFuncs/functions'
+import { getFlightsPerPage } from '@/utils/paginationUtils';
+import useAirlineDictionary from '@/hooks/useAirlineDictionary';
+import useAirportDictionary from '@/hooks/useAirportDictionary';
+import { totalData } from '@/types/types';
 
+const FlightResults = ({ allData, CurrentPage }: { allData: totalData, CurrentPage: number }) => {
 
-const FlightResults = ({ data, allData }: { data: FlightData, allData: any }) => {
+    const flightsData = getFlightsPerPage(CurrentPage, allData.pricedItineraries);
 
-    const airlinesDict = createAirlinesDict(allData.additionalData);
-    const airportsDict = createAirportsDict(allData.additionalData);
+    // Create a dictionary of airlines to find airline persian name easy
+    const airlinesDictionary = useAirlineDictionary(allData.additionalData);
 
+    // Create a dictionary of airports to find airport persian name easy
+    const airportsDictionary = useAirportDictionary(allData.additionalData);
 
     return (
         <div className='FlightResults flex flex-col items-end w-full gap-1'>
@@ -27,17 +33,18 @@ const FlightResults = ({ data, allData }: { data: FlightData, allData: any }) =>
 
 
             <div className='FlightResults__results w-full mt-6 flex flex-col gap-10'>
-                {data.map((item, index) => {
-                    const airlineNameFa = airlinesDict[item.validatingAirlineCode] || item.validatingAirlineCode;
-                    const originCity = airportsDict[item.originDestinationOptions[0].flightSegments[0].departureAirportLocationCode] || item.originDestinationOptions[0].flightSegments[0].departureAirportLocationCode;
-                    const destinationCity = airportsDict[item.originDestinationOptions[0].flightSegments[0].arrivalAirportLocationCode] || item.originDestinationOptions[0].flightSegments[0].arrivalAirportLocationCode;
-                    const startTime = extractDateTimeInfo(item.originDestinationOptions[0].flightSegments[0].departureDateTime);
-                    const endTime = extractDateTimeInfo(item.originDestinationOptions[0].flightSegments[0].arrivalDateTime);
-                    const estimatedTime = convertTimeToPersianFormat(item.originDestinationOptions[0].flightSegments[0].journeyDuration);
+                {flightsData.map((item, index) => {
+                    const flightSegment = item.originDestinationOptions[0].flightSegments[0];
+
+                    const airlineNameFa = airlinesDictionary[item.validatingAirlineCode] || item.validatingAirlineCode;
+                    const originCity = airportsDictionary[flightSegment.departureAirportLocationCode] || flightSegment.departureAirportLocationCode;
+                    const destinationCity = airportsDictionary[flightSegment.arrivalAirportLocationCode] || flightSegment.arrivalAirportLocationCode;
+                    const startTime = extractDateTimeInfo(flightSegment.departureDateTime);
+                    const endTime = extractDateTimeInfo(flightSegment.arrivalDateTime);
+                    const estimatedTime = convertTimeToPersianFormat(flightSegment.journeyDuration);
 
                     return (
                         <FlightResultCard
-                            flightData={item}
                             flightId={index}
                             airlineName={airlineNameFa}
                             flightRouteProps={{
@@ -45,8 +52,8 @@ const FlightResults = ({ data, allData }: { data: FlightData, allData: any }) =>
                                 destinationCity: destinationCity.cityFa,
                                 originCityAirportName: originCity.name,
                                 destinationCityAirportName: destinationCity.name,
-                                startTime: startTime.formattedTime,
-                                endTime: endTime.formattedTime,
+                                startTime: startTime,
+                                endTime: endTime,
                                 estimatedTime: estimatedTime,
                             }}
                             ticketDetailsProps={{
@@ -55,11 +62,17 @@ const FlightResults = ({ data, allData }: { data: FlightData, allData: any }) =>
                             }}
                             flightOptionsProps={{
                                 isCharter: item.isCharter,
-                                classType: getCabinClass(item.originDestinationOptions[0].flightSegments[0].cabinClassCode),
-                                availableSeats: item.originDestinationOptions[0].flightSegments[0].seatsRemaining,
-                                flightNumber: item.originDestinationOptions[0].flightSegments[0].operatingAirline.flightNumber || 7856,
+                                classType: getCabinClass(flightSegment.cabinClassCode),
+                                availableSeats: flightSegment.seatsRemaining,
+                                flightNumber: flightSegment.operatingAirline.flightNumber || 7856,
                                 provider: airlineNameFa,
                             }}
+                            pricingBreakdownPerPassenger={item.airItineraryPricingInfo.ptcFareBreakdown}
+                            priceFare={item.airItineraryPricingInfo.itinTotalFare.totalFare}
+                            isRefundable={item.refundMethod}
+                            airplaneModel={flightSegment.operatingAirline.equipment}
+                            allowedBaggage={flightSegment.baggage}
+                            fareClass={flightSegment.cabinClassCode}
                         />
                     )
                 })}

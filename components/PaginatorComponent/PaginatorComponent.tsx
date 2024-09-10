@@ -1,10 +1,10 @@
 'use client';
 import React, { useState } from 'react';
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
-import { FlightData } from '@/types/types';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { totalData } from '@/types/types';
 
-const PaginatorComponent = ({ data }: { data: FlightData }) => {
+const PaginatorComponent = ({ data }: { data: totalData }) => {
     const router = useRouter();
     const searchParams = useSearchParams(); // Access the current query parameters
     const [first, setFirst] = useState<number>(0);

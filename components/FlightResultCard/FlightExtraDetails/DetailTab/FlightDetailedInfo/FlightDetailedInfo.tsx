@@ -1,25 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 import flightIcon from '@/assets/icons/flightIcon.png'; // Adjust the path to your icon
+import { FlightDetailedInfoProps } from '@/types/types';
 
-interface FlightDetailedInfoProps {
-    airlineName: string;
-    originCity: string;
-    destinationCity: string;
-    startTime: string;
-    endTime: string;
-    startDate: string;
-    endDate: string;
-    originAirport: string;
-    destinationAirport: string;
-    flightDuration: string;
-    flightType: string;
-    isRefundable: string;
-    airplaneModel: string;
-    allowedBaggage: string;
-    flightClass: string;
-    fareClass: string;
-}
 
 const FlightDetailedInfo: React.FC<FlightDetailedInfoProps> = ({
     airlineName,
@@ -51,7 +34,7 @@ const FlightDetailedInfo: React.FC<FlightDetailedInfoProps> = ({
                 <div className='flex flex-row items-center gap-4'>
                     <div className='circle-start border border-[#870b1d] translate-x-0.5 w-2 h-2 rounded-full'></div>
                     <div className='flex flex-row gap-4 border-l pl-3 border-[#eeeeee]'>
-                        <p className='font-bold'>{startTime}</p>
+                        <p className='font-bold'>{startTime.formattedTime}</p>
                         <p>{originCity}</p>
                     </div>
                     <div className='flex flex-row gap-4 border-l pl-3 border-[#eeeeee]'>
@@ -100,7 +83,7 @@ const FlightDetailedInfo: React.FC<FlightDetailedInfoProps> = ({
                 <div className='flex flex-row items-center gap-4'>
                     <div className="circle-start border border-[#870b1d] translate-x-0.5 w-2 h-2 rounded-full"></div>
                     <div className='flex flex-row gap-4 border-l pl-3 border-[#eeeeee]'>
-                        <p className='font-bold'>{endTime}</p>
+                        <p className='font-bold'>{endTime.formattedTime}</p>
                         <p>{destinationCity}</p>
                     </div>
                     <div className='flex flex-row gap-4 border-l pl-3 border-[#eeeeee]'>

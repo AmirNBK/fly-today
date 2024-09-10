@@ -2,10 +2,10 @@
 import React from 'react';
 import Image from 'next/image';
 import arrow from '@/assets/icons/arrow.svg';
-import { FlightOptionsProps } from '@/types/types';
 import { useAppContext } from '@/context/AppContext';
+import { flightOptionsProps } from '@/types/types';
 
-const FlightOptions: React.FC<FlightOptionsProps & { flightId: string }> = ({
+const FlightOptions: React.FC<flightOptionsProps & { flightId: string | number }> = ({
     isCharter,
     classType,
     availableSeats,

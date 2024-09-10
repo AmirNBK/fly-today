@@ -12,9 +12,15 @@ const FlightResultCard: React.FC<FlightResultCardProps> = ({
     flightRouteProps,
     ticketDetailsProps,
     flightOptionsProps,
-    flightId, 
-    flightData
+    flightId,
+    pricingBreakdownPerPassenger,
+    priceFare,
+    isRefundable,
+    airplaneModel,
+    allowedBaggage,
+    fareClass
 }) => {
+    
     return (
         <div className="FlightResultCard flex flex-col bg-white w-full justify-between rounded-sm">
             <div className="flex flex-row-reverse gap-12 items-center">
@@ -33,12 +39,18 @@ const FlightResultCard: React.FC<FlightResultCardProps> = ({
             </div>
 
             <div className='FlightResultCardFooter'>
-            <FlightOptions {...flightOptionsProps} flightId={flightId} />
+                <FlightOptions {...flightOptionsProps} flightId={flightId} />
 
-            <FlightExtraDetails flightId={flightId} airlineName={airlineName} flightRouteProps={flightRouteProps} flightData={flightData} 
-            isCharter={flightOptionsProps.isCharter} classType={flightOptionsProps.classType}
-            />
-        </div>
+                <FlightExtraDetails flightId={flightId} airlineName={airlineName} flightRouteProps={flightRouteProps} 
+                    isCharter={flightOptionsProps.isCharter} classType={flightOptionsProps.classType}
+                    priceFare={priceFare}
+                    pricingBreakdownPerPassenger={pricingBreakdownPerPassenger}
+                    isRefundable={isRefundable}
+                    airplaneModel={airplaneModel}
+                    allowedBaggage={allowedBaggage}
+                    fareClass={fareClass}
+                />
+            </div>
         </div>
     );
 };

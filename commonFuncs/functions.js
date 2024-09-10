@@ -2,12 +2,11 @@ export const extractDateTimeInfo = (dateTimeString) => {
   const date = new Date(dateTimeString);
 
   const year = date.getFullYear();
-  const month = date.getMonth() + 1; // Month is 0-based, so add 1
+  const month = date.getMonth() + 1; 
   const day = date.getDate();
   const hours = date.getHours();
   const minutes = date.getMinutes();
 
-  // Array of English month names
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -68,30 +67,7 @@ export const getCabinClass = (cabinClassCode) => {
       return 'اکونومی';
     case 'J':
       return 'بیزینس';
-    case 'F':
-      return 'First Class';
     default:
-      return 'Unknown Class';
+      return '';
   }
 }
-
-export const createAirlinesDict = (additionalData) => {
-  if (additionalData) {
-    return additionalData.airlines.reduce((acc, airline) => {
-      acc[airline.iata] = airline.nameFa;
-      return acc;
-    }, {});
-  }
-};
-
-export const createAirportsDict = (additionalData) => {
-  if (additionalData) {
-    return additionalData.airports.reduce((acc, airport) => {
-      acc[airport.iata] = {
-        cityFa: airport.cityFa,
-        name: airport.name
-      };
-      return acc;
-    }, {});
-  }
-};
