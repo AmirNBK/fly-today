@@ -102,8 +102,6 @@ export interface AdditionalData {
   airports: Airport[];
 }
 
-// Define types for the air itinerary pricing info
-
 export interface TotalFare {
   totalService: number;
   totalFare: number;
@@ -119,7 +117,6 @@ export interface PassengerFare {
   baseFare: number;
   totalFare: number;
   serviceTax: number;
-  taxes: any[]; // Specify a more precise type if needed
   total: number;
   tax: number;
   vat: number;
@@ -141,7 +138,6 @@ export interface AirItineraryPricingInfo {
   fareType: string;
   itinTotalFare: TotalFare;
   ptcFareBreakdown: PtcFareBreakdown[];
-  fareInfoes: any[]; // Specify a more precise type if needed
 }
 
 export interface OperatingAirline {
@@ -169,7 +165,6 @@ export interface FlightSegment {
   isCharter: boolean;
   isReturn: boolean;
   baggage: string;
-  technicalStops: any[]; // Specify a more precise type if needed
 }
 
 export interface OriginDestinationOption {
@@ -192,7 +187,6 @@ export interface PricedItinerary {
   hasFareFamilies: boolean;
   airItineraryPricingInfo: AirItineraryPricingInfo;
   originDestinationOptions: OriginDestinationOption[];
-  featured: any; // Specify a more precise type if needed
   bestExperienceIndex: number;
   isCharter: boolean;
   isSystem: boolean;

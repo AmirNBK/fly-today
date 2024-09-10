@@ -2,10 +2,10 @@ import Image from 'next/image';
 import React from 'react';
 import flightIcon from '@/assets/icons/flightIcon.png';
 import FlightRoute from './FlightRoute/FlightRoute';
-import TicketDetails from './TicketDetails/TicketDetails';
 import { FlightResultCardProps } from '@/types/types';
 import FlightOptions from './FlightOptions/FlightOptions';
 import FlightExtraDetails from './FlightExtraDetails/FlightExtraDetails';
+import TicketPrice from './TicketPrice/TicketPrice';
 
 const FlightResultCard: React.FC<FlightResultCardProps> = ({
     airlineName,
@@ -34,7 +34,7 @@ const FlightResultCard: React.FC<FlightResultCardProps> = ({
                 </div>
 
                 <div className="flex-[1.5] border-r border-[#eeeeee] p-8">
-                    <TicketDetails {...ticketDetailsProps} />
+                    <TicketPrice {...ticketDetailsProps} />
                 </div>
             </div>
 

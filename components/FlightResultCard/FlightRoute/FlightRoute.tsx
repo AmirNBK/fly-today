@@ -2,7 +2,6 @@ import { FlightRouteProps } from '@/types/types';
 import React from 'react';
 
 const FlightRoute: React.FC<FlightRouteProps> = ({ originCity, destinationCity, startTime, endTime, estimatedTime }) => {
-    console.log(typeof startTime);
 
     return (
         <div className="flight-route flex justify-between items-center w-full my-4 relative">

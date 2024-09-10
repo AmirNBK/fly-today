@@ -25,6 +25,7 @@ const DetailTab: React.FC<DetailTabProps> = ({
     fareClass,
 }) => {
 
+    // Maps over each passenger and generates a cost for each
     const costItems = pricingBreakdownPerPassenger.map(item => {
         const label = item.passengerTypeQuantity.passengerType === 'Adt' ? 'بزرگسال' :
             item.passengerTypeQuantity.passengerType === 'Chd' ? 'کودک' :

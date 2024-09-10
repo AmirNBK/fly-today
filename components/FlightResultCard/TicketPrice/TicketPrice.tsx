@@ -1,14 +1,14 @@
 import PrimaryButton from '@/components/PrimaryButton/PrimaryButton';
 import React from 'react';
 
-interface TicketDetailsProps {
+interface TicketPriceProps {
     price: number;          
     currency: string;     
 }
 
-const TicketDetails: React.FC<TicketDetailsProps> = ({price, currency }) => {
+const TicketPrice: React.FC<TicketPriceProps> = ({price, currency }) => {
     return (
-        <div className='TicketDetails flex flex-col items-center w-full gap-4'>
+        <div className='TicketPrice flex flex-col items-center w-full gap-4'>
             <p className='text-[#8d8d8d] text-sm'>
                 یک نفر
             </p>
@@ -27,4 +27,4 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({price, currency }) => {
     );
 };
 
-export default TicketDetails;
+export default TicketPrice;
