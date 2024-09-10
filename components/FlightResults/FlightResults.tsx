@@ -3,21 +3,13 @@ import SortingComponent from '../SortingComponent/SortingComponent';
 import FlightResultCard from '../FlightResultCard/FlightResultCard';
 import PaginatorComponent from '../PaginatorComponent/PaginatorComponent';
 import { FlightData } from '@/types/types';
-import { convertTimeToPersianFormat, extractDateTimeInfo, getCabinClass } from '@/commonFuncs/functions'
+import { convertTimeToPersianFormat, createAirlinesDict, createAirportsDict, extractDateTimeInfo, getCabinClass } from '@/commonFuncs/functions'
 
 
-const FlightResults = ({ data , allData }: { data: FlightData , allData : any }) => {
-    
+const FlightResults = ({ data, allData }: { data: FlightData, allData: any }) => {
 
-    const airlinesDict = allData.additionalData.airlines.reduce((acc, airline) => {
-        acc[airline.iata] = airline.nameFa;
-        return acc;
-    }, {});
-
-    const airportsDict = allData.additionalData.airports.reduce((acc, airport) => {
-        acc[airport.iata] = airport.cityFa;
-        return acc;
-    }, {});
+    const airlinesDict = createAirlinesDict(allData.additionalData);
+    const airportsDict = createAirportsDict(allData.additionalData);
 
 
     return (
@@ -29,7 +21,7 @@ const FlightResults = ({ data , allData }: { data: FlightData , allData : any })
             <div className='flex flex-row justify-between items-center w-full'>
                 <SortingComponent />
                 <p className='rtl text-sm'>
-                    {data.length} پرواز یافت شد . سه‌شنبه، 25 مهر 1402
+                    {allData.pricedItineraries.length} پرواز یافت شد . سه‌شنبه، 25 مهر 1402
                 </p>
             </div>
 
@@ -37,19 +29,22 @@ const FlightResults = ({ data , allData }: { data: FlightData , allData : any })
             <div className='FlightResults__results w-full mt-6 flex flex-col gap-10'>
                 {data.map((item, index) => {
                     const airlineNameFa = airlinesDict[item.validatingAirlineCode] || item.validatingAirlineCode;
-                    const originCityFa = airportsDict[item.originDestinationOptions[0].flightSegments[0].departureAirportLocationCode] || item.originDestinationOptions[0].flightSegments[0].departureAirportLocationCode;
-                    const destinationCityFa = airportsDict[item.originDestinationOptions[0].flightSegments[0].arrivalAirportLocationCode] || item.originDestinationOptions[0].flightSegments[0].arrivalAirportLocationCode;
+                    const originCity = airportsDict[item.originDestinationOptions[0].flightSegments[0].departureAirportLocationCode] || item.originDestinationOptions[0].flightSegments[0].departureAirportLocationCode;
+                    const destinationCity = airportsDict[item.originDestinationOptions[0].flightSegments[0].arrivalAirportLocationCode] || item.originDestinationOptions[0].flightSegments[0].arrivalAirportLocationCode;
                     const startTime = extractDateTimeInfo(item.originDestinationOptions[0].flightSegments[0].departureDateTime);
                     const endTime = extractDateTimeInfo(item.originDestinationOptions[0].flightSegments[0].arrivalDateTime);
-                    const estimatedTime = convertTimeToPersianFormat(item.originDestinationOptions[0].flightSegments[0].journeyDuration)
+                    const estimatedTime = convertTimeToPersianFormat(item.originDestinationOptions[0].flightSegments[0].journeyDuration);
 
                     return (
                         <FlightResultCard
+                            flightData={item}
                             flightId={index}
                             airlineName={airlineNameFa}
                             flightRouteProps={{
-                                originCity: originCityFa,
-                                destinationCity: destinationCityFa,
+                                originCity: originCity.cityFa,
+                                destinationCity: destinationCity.cityFa,
+                                originCityAirportName: originCity.name,
+                                destinationCityAirportName: destinationCity.name,
                                 startTime: startTime.formattedTime,
                                 endTime: endTime.formattedTime,
                                 estimatedTime: estimatedTime,
@@ -60,7 +55,7 @@ const FlightResults = ({ data , allData }: { data: FlightData , allData : any })
                             }}
                             flightOptionsProps={{
                                 isCharter: item.isCharter,
-                                classType:  getCabinClass(item.originDestinationOptions[0].flightSegments[0].cabinClassCode),
+                                classType: getCabinClass(item.originDestinationOptions[0].flightSegments[0].cabinClassCode),
                                 availableSeats: item.originDestinationOptions[0].flightSegments[0].seatsRemaining,
                                 flightNumber: item.originDestinationOptions[0].flightSegments[0].operatingAirline.flightNumber || 7856,
                                 provider: airlineNameFa,

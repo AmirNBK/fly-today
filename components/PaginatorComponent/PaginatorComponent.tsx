@@ -5,6 +5,7 @@ import { FlightData } from '@/types/types';
 import { useRouter } from 'next/navigation';
 
 const PaginatorComponent = ({ data }: { data: FlightData }) => {
+
     const router = useRouter();
     const [first, setFirst] = useState<number>(0);
     const [rows, setRows] = useState<number>(7);
@@ -13,7 +14,7 @@ const PaginatorComponent = ({ data }: { data: FlightData }) => {
         const newPage = (event.first / event.rows) + 1;
         setFirst(event.first);
         setRows(event.rows);
-        router.push(`/flight/search?page=${newPage}`); // Update the URL with the new page number
+        router.push(`/flight/search?page=${newPage}`);
     };
 
     return (

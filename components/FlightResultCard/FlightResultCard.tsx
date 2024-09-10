@@ -4,7 +4,8 @@ import flightIcon from '@/assets/icons/flightIcon.png';
 import FlightRoute from './FlightRoute/FlightRoute';
 import TicketDetails from './TicketDetails/TicketDetails';
 import { FlightResultCardProps } from '@/types/types';
-import FlightResultCardFooter from './FlightResultCardFooter/FlightResultCardFooter';
+import FlightOptions from './FlightOptions/FlightOptions';
+import FlightExtraDetails from './FlightExtraDetails/FlightExtraDetails';
 
 const FlightResultCard: React.FC<FlightResultCardProps> = ({
     airlineName,
@@ -12,6 +13,7 @@ const FlightResultCard: React.FC<FlightResultCardProps> = ({
     ticketDetailsProps,
     flightOptionsProps,
     flightId, 
+    flightData
 }) => {
     return (
         <div className="FlightResultCard flex flex-col bg-white w-full justify-between rounded-sm">
@@ -30,7 +32,13 @@ const FlightResultCard: React.FC<FlightResultCardProps> = ({
                 </div>
             </div>
 
-            <FlightResultCardFooter flightOptionsProps={flightOptionsProps} flightId={flightId} />
+            <div className='FlightResultCardFooter'>
+            <FlightOptions {...flightOptionsProps} flightId={flightId} />
+
+            <FlightExtraDetails flightId={flightId} airlineName={airlineName} flightRouteProps={flightRouteProps} flightData={flightData} 
+            isCharter={flightOptionsProps.isCharter} classType={flightOptionsProps.classType}
+            />
+        </div>
         </div>
     );
 };

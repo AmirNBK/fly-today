@@ -74,7 +74,7 @@ const FlightDetailedInfo: React.FC<FlightDetailedInfoProps> = ({
                     </div>
                     <div className="col-span-1 flex flex-row gap-3">
                         <p className='text-[#8d8d8d]'>استرداد</p>
-                        <p className='text-[#ff1d23]'>{isRefundable}</p>
+                        <p className={`${isRefundable === 'Offline' ? 'text-[#ff1d23]' : 'text-[#4caf50]'}`}>{isRefundable === 'Offline' ? 'غیر قابل استرداد' : 'قابل استرداد'}</p>
                     </div>
                     <div className="col-span-1 flex flex-row gap-3">
                         <p className='text-[#8d8d8d]'>نوع هواپیما</p>

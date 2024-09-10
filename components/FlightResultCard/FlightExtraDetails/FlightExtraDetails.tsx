@@ -6,8 +6,9 @@ import Image from 'next/image';
 import docs from '@/assets/icons/doc.svg';
 import DetailTab from './DetailTab/DetailTab';
 import { useAppContext } from '@/context/AppContext';
+import { FlightResultCardProps } from '@/types/types';
 
-const FlightExtraDetails: React.FC<{ flightId: string }> = ({ flightId }) => {
+const FlightExtraDetails: React.FC<{ flightId: string, airlineName: string, flightRouteProps: FlightResultCardProps , flightData : any , isCharter : any , classType : any }> = ({ flightId, airlineName, flightRouteProps , flightData , isCharter , classType }) => {
     const { extraDetailsToggle } = useAppContext();
 
     return (
@@ -23,7 +24,7 @@ const FlightExtraDetails: React.FC<{ flightId: string }> = ({ flightId }) => {
                         </p>
                     </div>
                 }>
-                    <DetailTab />
+                    <DetailTab airlineName={airlineName} {...flightRouteProps} flightData={flightData} isCharter={isCharter} classType={classType} />
                 </TabPanel>
                 <TabPanel disabled header={
                     <div className='flex flex-row items-center gap-3 w-full h-full'>
