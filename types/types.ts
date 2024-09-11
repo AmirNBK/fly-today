@@ -286,7 +286,7 @@ export interface TicketPriceProps {
 }
 
 export interface FlightDetailsButtonProps  {
-  flightId: string;
+  flightId: string | number;
   airlineName: string;
   flightRouteProps: FlightRouteProps;
   flightOptionsProps: { isCharter: boolean; classType: string };

@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface AppContextType {
     extraDetailsToggle: Record<string, boolean>;
-    toggleExtraDetails: (id: string) => void;
+    toggleExtraDetails: (id: string | number) => void;
     selectedOptions: string[];
     setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>>;
 }
@@ -22,7 +22,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     const [extraDetailsToggle, setExtraDetailsToggle] = useState<Record<string, boolean>>({});
     const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
-    const toggleExtraDetails = (id: string) => {
+    const toggleExtraDetails = (id: string | number) => {
         setExtraDetailsToggle(prev => ({
             ...prev,
             [id]: !prev[id],

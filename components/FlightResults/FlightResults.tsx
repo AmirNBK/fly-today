@@ -6,7 +6,7 @@ import { convertTimeToPersianFormat, extractDateTimeInfo, getCabinClass } from '
 import { getFlightsPerPage } from '@/utils/paginationUtils';
 import useAirlineDictionary from '@/hooks/useAirlineDictionary';
 import useAirportDictionary from '@/hooks/useAirportDictionary';
-import { totalData } from '@/types/types';
+import { Filters, totalData } from '@/types/types';
 import { sortFlights, SortOption } from '@/utils/sortFlightsUtils';
 import MobileSortFilterActions from '../MobileSortFilterActions/MobileSortFilterActions';
 
@@ -26,7 +26,7 @@ const FlightResults = ({
     arrivalAirports: string[],
     DepartureAirport: string[],
     CheckedLuggage: string[],
-    filters: object
+    filters: Filters
 }) => {
 
     // Filter the flights based on the list of arrival airports, departure airports, and checked luggage
