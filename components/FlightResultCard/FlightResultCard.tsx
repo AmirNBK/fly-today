@@ -69,10 +69,20 @@ const FlightResultCard: React.FC<FlightResultCardProps> = ({
                     </div>
 
                     <div>
-                    <TicketPrice {...ticketDetailsProps} flightId={flightId} />
-                    
+                    <TicketPrice
+                        price={ticketDetailsProps.price}
+                        currency={ticketDetailsProps.currency}
+                        flightId={flightId}
+                        airlineName={airlineName}
+                        flightRouteProps={flightRouteProps}
+                        flightOptionsProps={flightOptionsProps}
+                        pricingBreakdownPerPassenger={pricingBreakdownPerPassenger}
+                        isRefundable={isRefundable}
+                        airplaneModel={airplaneModel}
+                        allowedBaggage={allowedBaggage}
+                        fareClass={fareClass}
+                    />
                     </div>
-
                     
             </div>
 

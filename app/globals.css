@@ -97,4 +97,8 @@ body {
   .p-button{
     font-family: '__IranSans_3d9ef6';
   }
+
+  .p-tabview .p-tabview-panels {
+    padding: 0;
+  }
 }
