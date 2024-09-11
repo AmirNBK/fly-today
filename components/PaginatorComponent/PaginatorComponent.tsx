@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
 import { useRouter } from 'next/navigation';
-import { totalData } from '@/types/types';
+import { PricedItinerary, totalData } from '@/types/types';
 
-const PaginatorComponent = ({ data, currentPage }: { data: totalData, currentPage: number }) => {
+const PaginatorComponent = ({ data, currentPage }: { data: PricedItinerary[], currentPage: number }) => {
     const router = useRouter();
     const [first, setFirst] = useState<number>(0);
     const [rows, setRows] = useState<number>(7);

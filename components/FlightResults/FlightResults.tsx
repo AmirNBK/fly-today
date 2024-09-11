@@ -10,6 +10,9 @@ import { totalData } from '@/types/types';
 import { sortFlights, SortOption } from '@/utils/sortFlightsUtils';
 import Image from 'next/image';
 import filter from '@/assets/icons/filter.svg'
+import sorting from '@/assets/icons/sorting.svg'
+import MobileSortFilterActions from '../MobileSortFilterActions/MobileSortFilterActions';
+
 
 const FlightResults = ({
     allData,
@@ -62,7 +65,13 @@ const FlightResults = ({
     const airportsDictionary = useAirportDictionary(allData.additionalData);
 
     return (
+
         <div className='FlightResults flex flex-col items-end w-full gap-1'>
+
+            <div className=' w-full sm:hidden block'>
+                <MobileSortFilterActions selectedSortingOption={selectedSortingOption} />
+            </div>
+
             <h2 className=' font-bold text-[#464646] text-xl'>
                 بلیط هواپیمای تهران به استانبول
             </h2>
@@ -74,14 +83,6 @@ const FlightResults = ({
                 </p>
             </div>
 
-            <div className='flex flex-row w-full'>
-                <button className='flex flex-row-reverse w-1/2 items-center gap-2 bg-white p-2 justify-center rounded-sm'>
-                    <Image src={filter} alt='filter'/>
-                    <p>
-                    فیلتر کردن
-                    </p>
-                </button>
-            </div>
 
             <div className='FlightResults__results w-full mt-6 flex  flex-col sm:gap-10 gap-5'>
                 {filteredFlights.length > 0 ?
