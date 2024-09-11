@@ -30,7 +30,7 @@ const PaginatorComponent = ({ data, currentPage }: { data: totalData, currentPag
     };
 
     return (
-        <div className='PaginatorComponent w-full'>
+        <div className='PaginatorComponent w-full block '>
             <Paginator
                 first={first}
                 rows={rows}

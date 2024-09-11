@@ -42,7 +42,7 @@ const SortingComponent = ({ selectedSortingOption }: { selectedSortingOption: So
     };
 
     return (
-        <div className='flex flex-row gap-2 items-center w-1/3'>
+        <div className='sm:flex hidden flex-row gap-2 items-center w-1/3'>
             <Dropdown
                 value={selectedSort}
                 onChange={handleSortChange}

@@ -17,8 +17,9 @@ const FlightOptions: React.FC<flightOptionsProps & { flightId: string | number }
 
 
     return (
-        <div className='flex flex-row-reverse w-full justify-between items-center border-t border-[#eeeeee]'>
-            <div className='flex flex-row-reverse gap-4 items-center text-sm px-6 py-2'>
+        <div className='flex flex-row-reverse w-full justify-between items-center sm:border-t sm:border-y-0 border-y border-[#eeeeee]'>
+            <div className='flex flex-row-reverse sm:gap-4 items-center sm:text-sm text-xs sm:px-6 px-2 py-2 sm:w-fit w-full justify-between'>
+                
                 <p className='text-[#464646] bg-[#f4f4f4] py-1 px-5'>
                     {isCharter ? 'چارتر' : 'سیستمی'}
                 </p>
@@ -35,12 +36,12 @@ const FlightOptions: React.FC<flightOptionsProps & { flightId: string | number }
                     ‏شماره پرواز : {flightNumber}
                 </p>
 
-                <p className='text-[#464646]'>
+                <p className='text-[#464646] sm:block hidden'>
                     تامین‌کننده: {provider}
                 </p>
             </div>
 
-            <div className='px-16 flex flex-row-reverse items-center gap-2 cursor-pointer'>
+            <div className='px-16 sm:flex hidden flex-row-reverse items-center gap-2 cursor-pointer'>
                 <p className='text-[#ff7913]' onClick={() => toggleExtraDetails(flightId)}>
                     جزئیات بیشتر
                 </p>

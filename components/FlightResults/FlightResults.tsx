@@ -25,8 +25,6 @@ const FlightResults = ({
     CheckedLuggage: string[]
 }) => {
 
-    // Filter the flights based on the list of arrival airports
-    // Filter the flights based on the list of arrival airports and departure airports
     // Filter the flights based on the list of arrival airports, departure airports, and checked luggage
     const filteredFlights = allData.pricedItineraries.filter(flight => {
         const flightSegment = flight.originDestinationOptions[0].flightSegments[0];
@@ -49,7 +47,7 @@ const FlightResults = ({
         return isArrivalAirportValid && isDepartureAirportValid && isCheckedLuggageValid;
     });
 
-    // Sort the flights based on the selected option
+    // Sort the flights based on the selected sorting option
     const sortedFlights = sortFlights(filteredFlights, selectedSortingOption);
 
     // Paginate the sorted flights
@@ -67,14 +65,14 @@ const FlightResults = ({
                 بلیط هواپیمای تهران به استانبول
             </h2>
 
-            <div className='flex flex-row justify-between items-center w-full'>
+            <div className='flex flex-row sm:justify-between justify-end items-center w-full mt-2'>
                 <SortingComponent selectedSortingOption={selectedSortingOption} />
                 <p className='rtl text-sm'>
                     {filteredFlights.length} پرواز یافت شد . سه‌شنبه، 25 مهر 1402
                 </p>
             </div>
 
-            <div className='FlightResults__results w-full mt-6 flex flex-col gap-10'>
+            <div className='FlightResults__results w-full mt-6 flex  flex-col sm:gap-10 gap-5'>
                 {filteredFlights.length > 0 ?
                     flightsData.map((item, index) => {
                         const flightSegment = item.originDestinationOptions[0].flightSegments[0];

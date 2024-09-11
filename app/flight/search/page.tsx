@@ -19,7 +19,7 @@ const Results: FC<PageQueryParams> = ({ searchParams }) => {
 
 
     return (
-        <main className={`${IranSans.className} flex flex-row p-6 w-10/12 gap-11 mx-auto mt-12`}>
+        <main className={`${IranSans.className} flex flex-row sm:p-6 p-4 sm:w-10/12 w-full gap-11 mx-auto mt-12`}>
             <div className="flex-[2]">
                 <FlightResults 
                     allData={data as totalData} 
@@ -30,7 +30,7 @@ const Results: FC<PageQueryParams> = ({ searchParams }) => {
                     CheckedLuggage={CheckedLuggage}
                 />
             </div>
-            <div className="flex-[0.7]">
+            <div className="flex-[0.7] sm:block hidden">
                 <FlightFilters filters={data.filter} />
             </div>
         </main>
