@@ -3,6 +3,8 @@ export interface PageQueryParams {
     sort: string;
     page?: string;
     ArrivalAirport?: string
+    DepartureAirport? : string
+    CheckedLuggage?: string
   };
 }
 

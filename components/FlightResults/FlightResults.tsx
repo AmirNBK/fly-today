@@ -10,23 +10,43 @@ import { totalData } from '@/types/types';
 import { sortFlights, SortOption } from '@/utils/sortFlightsUtils';
 
 const FlightResults = ({
-    allData, 
-    CurrentPage, 
-    selectedSortingOption, 
-    arrivalAirports 
-}: { 
-    allData: totalData, 
-    CurrentPage: number, 
-    selectedSortingOption: SortOption, 
-    arrivalAirports: string[] 
+    allData,
+    CurrentPage,
+    selectedSortingOption,
+    arrivalAirports,
+    DepartureAirport,
+    CheckedLuggage
+}: {
+    allData: totalData,
+    CurrentPage: number,
+    selectedSortingOption: SortOption,
+    arrivalAirports: string[],
+    DepartureAirport: string[],
+    CheckedLuggage: string[]
 }) => {
 
     // Filter the flights based on the list of arrival airports
+    // Filter the flights based on the list of arrival airports and departure airports
+    // Filter the flights based on the list of arrival airports, departure airports, and checked luggage
     const filteredFlights = allData.pricedItineraries.filter(flight => {
         const flightSegment = flight.originDestinationOptions[0].flightSegments[0];
-        return arrivalAirports.length > 0 
-            ? arrivalAirports.includes(flightSegment.arrivalAirportLocationCode)
+        const flightArrivalAirport = flightSegment.arrivalAirportLocationCode;
+        const flightDepartureAirport = flightSegment.departureAirportLocationCode;
+        const flightAllowedBaggage = flightSegment.baggage;
+
+        const isArrivalAirportValid = arrivalAirports.length > 0
+            ? arrivalAirports.includes(flightArrivalAirport)
             : true;
+
+        const isDepartureAirportValid = DepartureAirport.length > 0
+            ? DepartureAirport.includes(flightDepartureAirport)
+            : true;
+
+        const isCheckedLuggageValid = CheckedLuggage.length > 0
+            ? CheckedLuggage.includes(flightAllowedBaggage)
+            : true;
+
+        return isArrivalAirportValid && isDepartureAirportValid && isCheckedLuggageValid;
     });
 
     // Sort the flights based on the selected option

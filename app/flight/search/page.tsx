@@ -14,6 +14,9 @@ const Results: FC<PageQueryParams> = ({ searchParams }) => {
 
     // Extract the arrival airports filter and split by comma if multiple
     const arrivalAirports = (searchParams.ArrivalAirport as string)?.split(',') || [];
+    const DepartureAirport = (searchParams.DepartureAirport as string)?.split(',') || [];
+    const CheckedLuggage = (searchParams.CheckedLuggage as string)?.split(',') || [];
+
 
     return (
         <main className={`${IranSans.className} flex flex-row p-6 w-10/12 gap-11 mx-auto mt-12`}>
@@ -23,6 +26,8 @@ const Results: FC<PageQueryParams> = ({ searchParams }) => {
                     CurrentPage={CurrentPageIndex}
                     selectedSortingOption={selectedSortingOption}
                     arrivalAirports={arrivalAirports}
+                    DepartureAirport={DepartureAirport}
+                    CheckedLuggage={CheckedLuggage}
                 />
             </div>
             <div className="flex-[0.7]">
