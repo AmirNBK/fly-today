@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import FilterSection from '../FilterSection/FilterSection';
+import useResetFilters from '@/hooks/useResetFilters';
 
 const MobileFilterPopup = ({
     closePopup,
@@ -12,6 +13,8 @@ const MobileFilterPopup = ({
     filteredFlightsLength: number;
 }) => {
     const [isVisible, setIsVisible] = useState(false);
+    const resetFilters = useResetFilters();
+
 
     useEffect(() => {
         setTimeout(() => setIsVisible(true), 10);
@@ -39,7 +42,9 @@ const MobileFilterPopup = ({
 
                 <div className='flex justify-between items-center mt-8 mb-4 rtl'>
                     <p>{filteredFlightsLength} هتل پیدا شد</p>
-                    <p className='text-[#1b76ff] cursor-pointer'>لغو فیلترها</p>
+                    <p className='text-[#1b76ff] cursor-pointer'
+                    onClick={resetFilters}
+                    >لغو فیلترها</p>
                 </div>
 
                 <FilterSection filters={filters} />

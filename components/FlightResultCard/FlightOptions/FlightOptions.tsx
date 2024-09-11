@@ -14,11 +14,6 @@ const FlightOptions: React.FC<flightOptionsProps & { flightId: string | number }
     flightId,
 }) => {
     const { toggleExtraDetails, extraDetailsToggle } = useAppContext();
-
-    console.log(extraDetailsToggle);
-    
-
-
     return (
         <div className='flex flex-row-reverse w-full justify-between items-center sm:border-t sm:border-y-0 border-y border-[#eeeeee]'>
             <div className='flex flex-row-reverse sm:gap-4 items-center sm:text-sm text-xs sm:px-6 px-2 py-2 sm:w-fit w-full justify-between'>

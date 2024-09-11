@@ -6,7 +6,7 @@ import Image from 'next/image';
 import docs from '@/assets/icons/doc.svg';
 import DetailTab from './DetailTab/DetailTab';
 import { useAppContext } from '@/context/AppContext';
-import { FlightExtraDetailsProps, FlightRouteProps, PtcFareBreakdown } from '@/types/types';
+import { FlightExtraDetailsProps } from '@/types/types';
 
 const FlightExtraDetails: React.FC<FlightExtraDetailsProps> = ({
     flightId,

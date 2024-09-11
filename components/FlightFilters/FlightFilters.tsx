@@ -1,27 +1,24 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import FilterSection from '../FilterSection/FilterSection';
+import useResetFilters from '@/hooks/useResetFilters';
 
 const FlightFilters = ({ filters }: { filters: any }) => {
-    const [currentFilters, setCurrentFilters] = useState(filters);
-
-    const handleResetFilters = () => {
-        setCurrentFilters(filters);
-    };
+    const resetFilters = useResetFilters();
 
     return (
         <div className='FlightFilters bg-white w-full'>
             <div className='flex flex-row items-baseline justify-between p-4'>
                 <p
                     className='text-sm text-[#1773dc] cursor-pointer'
-                    onClick={handleResetFilters}
+                    onClick={resetFilters}
                 >
                     حذف فیلترها
                 </p>
                 <p className='font-bold'>فیلترها</p>
             </div>
 
-            <FilterSection filters={currentFilters} />
+            <FilterSection filters={filters} />
         </div>
     );
 };

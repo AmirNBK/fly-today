@@ -3,11 +3,13 @@ import { Checkbox, CheckboxChangeEvent } from 'primereact/checkbox';
 import { SingleFilterProps } from '@/types/types';
 import { useRouter } from 'next/navigation';
 import { Slider, SliderChangeEvent } from 'primereact/slider';
+import { useAppContext } from '@/context/AppContext';
 
 const SingleFilter: React.FC<SingleFilterProps> = ({ filterName, options, isCheckboxFilter, isRangeFilter, urlName }) => {
+    const { selectedOptions , setSelectedOptions } = useAppContext();
+
     const [isOpen, setIsOpen] = useState(false);
     const [range, setRange] = useState<[number, number]>([20000, 5000000]);
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
     const router = useRouter();
 
     useEffect(() => {
