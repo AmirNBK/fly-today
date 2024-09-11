@@ -14,6 +14,10 @@ Features
 - TypeScript: Adds static typing to JavaScript, enhancing code quality and maintainability.
 - PrimeReact: A collection of UI components for React, providing a rich set of features and styles.
 
+### Deployment
+
+The project is deployed on Netlify and can be accessed at: [https://fly-today.netlify.app/](https://fly-today.netlify.app/).
+- The Continuous Integration and Continuous Deployment (CI/CD) processes for this project is handled by Netlify, ensuring that updates are automatically built and deployed.
 
 
 ### Getting Started
