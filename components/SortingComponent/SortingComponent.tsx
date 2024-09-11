@@ -1,13 +1,14 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { Sort } from '@/types/types';
 import localFont from 'next/font/local';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { SortOption } from '@/utils/sortFlightsUtils';
 
 const IranSans = localFont({ src: '../../assets/fonts/IRANSansXFaNum-Regular.ttf' });
 
-const SortingComponent = () => {
+const SortingComponent = ({ selectedSortingOption }: { selectedSortingOption: SortOption }) => {
     const sorts: Sort[] = [
         { name: 'زمان (زودترین)', code: 'EarliestTime' },
         { name: 'زمان (دیرترین)', code: 'LatestTime' },
@@ -15,9 +16,19 @@ const SortingComponent = () => {
         { name: 'قیمت (ارزان ترین)', code: 'LowestPrice' },
     ];
 
-    const [selectedSort, setSelectedSort] = useState<Sort>(sorts[0]);
     const router = useRouter();
     const searchParams = useSearchParams();
+    const [selectedSort, setSelectedSort] = useState<Sort | null>(null);
+
+    // Set the initial selected sort based on the selectedSortingOption prop
+    useEffect(() => {
+        const sortOption = sorts.find(sort => sort.code === selectedSortingOption);
+        if (sortOption) {
+            setSelectedSort(sortOption);
+        } else {
+            setSelectedSort(sorts[0]); // Default to the first sort option if not found
+        }
+    }, [selectedSortingOption]);
 
     const handleSortChange = (e: DropdownChangeEvent) => {
         const newSort = e.value as Sort;
@@ -39,7 +50,7 @@ const SortingComponent = () => {
                 optionLabel="name"
                 className={`${IranSans.className} w-full md:w-14rem rtl h-10 flex flex-row items-center`}
             />
-            <p className=' w-full text-[#8d8d8d] text-sm'>
+            <p className='w-full text-[#8d8d8d] text-sm'>
                 مرتب سازی
             </p>
         </div>
