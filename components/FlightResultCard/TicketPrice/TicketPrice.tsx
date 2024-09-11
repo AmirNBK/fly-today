@@ -1,20 +1,7 @@
 import MobileFlightDetailsButton from '@/components/MobileFlightDetailsButton/MobileFlightDetailsButton';
 import PrimaryButton from '@/components/PrimaryButton/PrimaryButton';
+import { TicketPriceProps } from '@/types/types';
 import React from 'react';
-
-interface TicketPriceProps {
-    price: number;
-    currency: string;
-    flightId?: string | number;
-    airlineName: string;
-    flightRouteProps: any; // Replace with correct type
-    flightOptionsProps: { isCharter: boolean; classType: string };
-    pricingBreakdownPerPassenger: any; // Replace with correct type
-    isRefundable: boolean;
-    airplaneModel: string;
-    allowedBaggage: any; // Replace with correct type
-    fareClass: string;
-}
 
 const TicketPrice: React.FC<TicketPriceProps> = ({
     price,
@@ -39,10 +26,12 @@ const TicketPrice: React.FC<TicketPriceProps> = ({
                 </div>
             </div>
 
+            {/* Desktop view */}
             <div className='sm:block hidden w-full'>
                 <PrimaryButton label='انتخاب بلیط' />
             </div>
 
+            {/* Mobile view */}
             <div className='sm:hidden block w-full'>
                 <MobileFlightDetailsButton
                     flightId={flightId?.toString() || ''}

@@ -5,7 +5,7 @@ import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import localFont from 'next/font/local';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { SortOption } from '@/utils/sortFlightsUtils';
-import { getDefaultSort, updateSortInUrl, sorts } from '@/utils/sortUtils'; // Import from utils
+import { getDefaultSort, updateSortInUrl, sorts } from '@/utils/sortUtils';
 import { Sort } from '@/types/types';
 
 const IranSans = localFont({ src: '../../assets/fonts/IRANSansXFaNum-Regular.ttf' });
@@ -16,13 +16,13 @@ const SortingComponent = ({ selectedSortingOption }: { selectedSortingOption: So
     const [selectedSort, setSelectedSort] = useState<Sort | null>(null);
 
     useEffect(() => {
-        setSelectedSort(getDefaultSort(selectedSortingOption)); // Use utility function for default sort
+        setSelectedSort(getDefaultSort(selectedSortingOption));
     }, [selectedSortingOption]);
 
     const handleSortChange = (e: DropdownChangeEvent) => {
         const newSort = e.value as Sort;
         setSelectedSort(newSort);
-        updateSortInUrl(newSort.code, searchParams, router); // Use utility function for updating URL
+        updateSortInUrl(newSort.code, searchParams, router); 
     };
 
     return (

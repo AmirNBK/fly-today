@@ -2,9 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import FlightExtraDetails from '../FlightResultCard/FlightExtraDetails/FlightExtraDetails';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
+import { FlightDetailsButtonProps } from '@/types/types';
 
-const MobileFlightDetailsPopup = ({
-    closePopup,
+export interface FlightDetailsButtonWithCloseProps extends FlightDetailsButtonProps {
+    closePopup: () => void;
+}
+
+
+const MobileFlightDetailsPopup : React.FC<FlightDetailsButtonWithCloseProps> = ({
     flightId,
     airlineName,
     flightRouteProps,
@@ -15,20 +20,8 @@ const MobileFlightDetailsPopup = ({
     airplaneModel,
     allowedBaggage,
     fareClass,
-    price
-}: {
-    closePopup: () => void;
-    flightId: string | number | undefined;
-    airlineName: string;
-    flightRouteProps: any; // Replace with appropriate type
-    flightOptionsProps: any; // Replace with appropriate type
-    priceFare: number;
-    pricingBreakdownPerPassenger: any; // Replace with appropriate type
-    isRefundable: string;
-    airplaneModel: string;
-    allowedBaggage: any; // Replace with appropriate type
-    fareClass: string;
-    price: number
+    price, 
+    closePopup
 }) => {
     const [isVisible, setIsVisible] = useState(false);
 

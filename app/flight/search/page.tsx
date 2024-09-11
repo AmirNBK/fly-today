@@ -12,7 +12,7 @@ const Results: FC<PageQueryParams> = ({ searchParams }) => {
     const CurrentPageIndex = parseInt(searchParams.page as string, 10) || 1;
     const selectedSortingOption = (searchParams.sort as SortOption) || 'EarliestTime';
 
-    // Extract the arrival airports filter and split by comma if multiple
+    // Extract filter values for arrival airports, departure airports, and checked luggage from search parameters.
     const arrivalAirports = (searchParams.ArrivalAirport as string)?.split(',') || [];
     const DepartureAirport = (searchParams.DepartureAirport as string)?.split(',') || [];
     const CheckedLuggage = (searchParams.CheckedLuggage as string)?.split(',') || [];

@@ -1,7 +1,7 @@
 import { SortOption } from '@/utils/sortFlightsUtils';
 import { Sort } from '@/types/types';
 
-// Sorting options (shared between components)
+// Sorting options
 export const sorts: Sort[] = [
     { name: 'زمان (زودترین)', code: 'EarliestTime' },
     { name: 'زمان (دیرترین)', code: 'LatestTime' },
@@ -11,7 +11,7 @@ export const sorts: Sort[] = [
 
 // Function to extract sort option from URL or provide a default
 export const getDefaultSort = (selectedSortingOption: SortOption | null) => {
-    const defaultSort = sorts[0]; // Default to the first sort option
+    const defaultSort = sorts[0]; // Default sort option
 
     if (!selectedSortingOption) return defaultSort;
 
@@ -19,7 +19,7 @@ export const getDefaultSort = (selectedSortingOption: SortOption | null) => {
     return sortOption || defaultSort;
 };
 
-// Function to handle URL updates with sorting params
+// Updates the URL with a new sorting parameter and navigates to the updated URL
 export const updateSortInUrl = (sortCode: string, searchParams: URLSearchParams, router: any) => {
     const currentParams = new URLSearchParams(searchParams.toString());
     currentParams.set('sort', sortCode);

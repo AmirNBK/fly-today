@@ -3,20 +3,7 @@ import React, { useState } from 'react';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
 import MobileFlightDetailsPopup from '../MobileFlightDetailsPopup/MobileFlightDetailsPopup';
 import { useAppContext } from '@/context/AppContext';
-
-type FlightDetailsButtonProps = {
-    flightId: string | number | undefined;
-    airlineName: string;
-    flightRouteProps: any; // Replace with the correct type
-    flightOptionsProps: { isCharter: boolean; classType: string };
-    priceFare: number;
-    pricingBreakdownPerPassenger: any; // Replace with the correct type
-    isRefundable: string;
-    airplaneModel: string;
-    allowedBaggage: any; // Replace with the correct type
-    fareClass: string;
-    price: number;
-};
+import { FlightDetailsButtonProps, FlightRouteProps, PtcFareBreakdown } from '@/types/types';
 
 const MobileFlightDetailsButton: React.FC<FlightDetailsButtonProps> = ({
     flightId,
@@ -33,7 +20,6 @@ const MobileFlightDetailsButton: React.FC<FlightDetailsButtonProps> = ({
 }) => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const { toggleExtraDetails } = useAppContext();
-
 
     const openPopup = () => {
         setIsPopupVisible(true)

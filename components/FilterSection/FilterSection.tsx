@@ -1,29 +1,25 @@
-// components/FilterSection.tsx
 'use client';
 import React from 'react';
 import SingleFilter from '../SingleFilter/SingleFilter';
-
-interface FilterOption {
-    label: string;
-    value: string;
-}
+import { BaggageItem, FilterOption, Filters } from '@/types/types';
 
 interface FilterSectionProps {
-    filters: any;
+    filters: Filters;
 }
 
 const FilterSection = ({ filters }: FilterSectionProps) => {
-    const filterOptions = [
+    const filterOptions: FilterOption[] = [
         { label: 'فرودگاه بین المللی امام خمینی', value: 'ika' },
     ];
 
-    const filterOptions2 = [
+    const filterOptions2: FilterOption[] = [
         { label: 'فرودگاه صبیحا گوکچن', value: 'saw' },
         { label: 'فرودگاه استانبول', value: 'ist' },
     ];
 
-    const checkedLuggageOptions = Object.values(filters.baggage[0].items).map(
-        (item: any) => ({
+    // Generate checked luggage options from filters
+    const checkedLuggageOptions: FilterOption[] = Object.values(filters.baggage[0].items).map(
+        (item: BaggageItem) => ({
             label: item.baggageName,
             value: item.baggageName,
         })

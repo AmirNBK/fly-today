@@ -1,10 +1,9 @@
-// MobileSortingSidebar.tsx
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { SortOption } from '@/utils/sortFlightsUtils';
 import { getDefaultSort, updateSortInUrl, sorts } from '@/utils/sortUtils';
 
-const MobileSortingSidebar = ({ closeSidebar, selectedSortingOption }: { closeSidebar: () => void, selectedSortingOption: SortOption }) => {
+const MobileSortingPopup = ({ closeSidebar, selectedSortingOption }: { closeSidebar: () => void, selectedSortingOption: SortOption }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [selectedSort, setSelectedSort] = useState<SortOption | string>(getDefaultSort(selectedSortingOption)?.code);
@@ -70,4 +69,4 @@ const MobileSortingSidebar = ({ closeSidebar, selectedSortingOption }: { closeSi
     );
 };
 
-export default MobileSortingSidebar;
+export default MobileSortingPopup;

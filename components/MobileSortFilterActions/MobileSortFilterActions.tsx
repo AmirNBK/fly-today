@@ -1,15 +1,14 @@
 'use client';
-
 import { useState } from 'react';
 import Image from 'next/image';
 import sorting from '@/assets/icons/sorting.svg';
 import filter from '@/assets/icons/filter.svg';
-import MobileSortingSidebar from './MobileSortingSidebar/MobileSortingSidebar';
 import { SortOption } from '@/utils/sortFlightsUtils';
 import MobileFilterPopup from '../MobileFilterPopup/MobileFilterPopup';
+import MobileSortingPopup from './MobileSortingPopup/MobileSortingPopup';
 
 const MobileSortFilterActions = ({ selectedSortingOption, filters, filteredFlightsLength }: { selectedSortingOption: SortOption, filters: any, filteredFlightsLength: number }) => {
-    const [isSortingSidebarOpen, setSortingSidebarOpen] = useState(false);
+    const [isSortingPopupOpen, setSortingPopupOpen] = useState(false);
     const [isFilterPopupOpen, setFilterPopupOpen] = useState(false);
 
     return (
@@ -17,7 +16,7 @@ const MobileSortFilterActions = ({ selectedSortingOption, filters, filteredFligh
             <div className='flex flex-row w-full mb-6 gap-4'>
                 <button
                     className='flex flex-row-reverse w-1/2 items-center gap-2 bg-white p-2 justify-center rounded-sm'
-                    onClick={() => setSortingSidebarOpen(true)}
+                    onClick={() => setSortingPopupOpen(true)}
                 >
                     <Image src={sorting} alt='sorting' />
                     <p>مرتب‌ سازی</p>
@@ -32,10 +31,10 @@ const MobileSortFilterActions = ({ selectedSortingOption, filters, filteredFligh
                 </button>
             </div>
 
-            {isSortingSidebarOpen && (
-                <MobileSortingSidebar
+            {isSortingPopupOpen && (
+                <MobileSortingPopup
                     selectedSortingOption={selectedSortingOption}
-                    closeSidebar={() => setSortingSidebarOpen(false)}
+                    closeSidebar={() => setSortingPopupOpen(false)}
                 />
             )}
 

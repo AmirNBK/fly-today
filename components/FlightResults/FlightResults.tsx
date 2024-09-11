@@ -8,9 +8,6 @@ import useAirlineDictionary from '@/hooks/useAirlineDictionary';
 import useAirportDictionary from '@/hooks/useAirportDictionary';
 import { totalData } from '@/types/types';
 import { sortFlights, SortOption } from '@/utils/sortFlightsUtils';
-import Image from 'next/image';
-import filter from '@/assets/icons/filter.svg'
-import sorting from '@/assets/icons/sorting.svg'
 import MobileSortFilterActions from '../MobileSortFilterActions/MobileSortFilterActions';
 
 
@@ -29,30 +26,22 @@ const FlightResults = ({
     arrivalAirports: string[],
     DepartureAirport: string[],
     CheckedLuggage: string[],
-    filters : any
+    filters: object
 }) => {
 
     // Filter the flights based on the list of arrival airports, departure airports, and checked luggage
     const filteredFlights = allData.pricedItineraries.filter(flight => {
         const flightSegment = flight.originDestinationOptions[0].flightSegments[0];
-        const flightArrivalAirport = flightSegment.arrivalAirportLocationCode;
-        const flightDepartureAirport = flightSegment.departureAirportLocationCode;
-        const flightAllowedBaggage = flightSegment.baggage;
+        const { arrivalAirportLocationCode, departureAirportLocationCode, baggage } = flightSegment;
 
-        const isArrivalAirportValid = arrivalAirports.length > 0
-            ? arrivalAirports.includes(flightArrivalAirport)
-            : true;
 
-        const isDepartureAirportValid = DepartureAirport.length > 0
-            ? DepartureAirport.includes(flightDepartureAirport)
-            : true;
-
-        const isCheckedLuggageValid = CheckedLuggage.length > 0
-            ? CheckedLuggage.includes(flightAllowedBaggage)
-            : true;
+        const isArrivalAirportValid = arrivalAirports.length === 0 || arrivalAirports.includes(arrivalAirportLocationCode);
+        const isDepartureAirportValid = DepartureAirport.length === 0 || DepartureAirport.includes(departureAirportLocationCode);
+        const isCheckedLuggageValid = CheckedLuggage.length === 0 || CheckedLuggage.includes(baggage);
 
         return isArrivalAirportValid && isDepartureAirportValid && isCheckedLuggageValid;
     });
+
 
     // Sort the flights based on the selected sorting option
     const sortedFlights = sortFlights(filteredFlights, selectedSortingOption);
@@ -70,7 +59,8 @@ const FlightResults = ({
 
         <div className='FlightResults flex flex-col items-end w-full gap-1'>
 
-            <div className=' w-full sm:hidden block'>
+            {/* Render the mobile sorting and filter actions component*/}
+            <div className='w-full sm:hidden block'>
                 <MobileSortFilterActions selectedSortingOption={selectedSortingOption} filters={filters} filteredFlightsLength={filteredFlights.length} />
             </div>
 
@@ -79,6 +69,7 @@ const FlightResults = ({
             </h2>
 
             <div className='flex flex-row sm:justify-between justify-end items-center w-full mt-2'>
+                {/* Desktop sorting component*/}
                 <SortingComponent selectedSortingOption={selectedSortingOption} />
                 <p className='rtl text-sm'>
                     {filteredFlights.length} پرواز یافت شد . سه‌شنبه، 25 مهر 1402
@@ -132,6 +123,7 @@ const FlightResults = ({
                         )
                     })
                     :
+                    //displaying a message when no flights are found.
                     <div className="flex flex-col items-center justify-center h-64">
                         <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>

@@ -254,3 +254,47 @@ export interface FlightDetailedInfoProps {
   flightClass: string;
   fareClass: string;
 }
+
+export interface FilterOption {
+    label: string;
+    value: string;
+}
+
+export interface BaggageItem {
+  baggageName: string;
+}
+
+export interface Filters {
+  baggage: Array<{
+      filterName: string;
+      items: Record<string, BaggageItem>;
+  }>;
+}
+
+export interface TicketPriceProps {
+  price: number;
+  currency?: string;
+  flightId?: string | number;
+  airlineName: string;
+  flightRouteProps: any; 
+  flightOptionsProps: { isCharter: boolean; classType: string };
+  pricingBreakdownPerPassenger: any; 
+  isRefundable: string;
+  airplaneModel: string;
+  allowedBaggage: any; 
+  fareClass: string;
+}
+
+export interface FlightDetailsButtonProps  {
+  flightId: string;
+  airlineName: string;
+  flightRouteProps: FlightRouteProps;
+  flightOptionsProps: { isCharter: boolean; classType: string };
+  priceFare: number;
+  pricingBreakdownPerPassenger: PtcFareBreakdown[];
+  isRefundable: string;
+  airplaneModel: string;
+  allowedBaggage: string;
+  fareClass: string;
+  price: number;
+};

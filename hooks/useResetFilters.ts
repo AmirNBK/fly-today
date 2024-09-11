@@ -1,4 +1,3 @@
-// hooks/useResetFilters.ts
 import { useRouter } from 'next/navigation';
 import { useAppContext } from '@/context/AppContext';
 
@@ -16,7 +15,6 @@ const useResetFilters = () => {
             params.delete(key);
         });
 
-        // Push the updated URL without query parameters
         router.push(window.location.pathname);
     };
 
