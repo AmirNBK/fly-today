@@ -6,8 +6,9 @@ import filter from '@/assets/icons/filter.svg';
 import { SortOption } from '@/utils/sortFlightsUtils';
 import MobileFilterPopup from '../MobileFilterPopup/MobileFilterPopup';
 import MobileSortingPopup from './MobileSortingPopup/MobileSortingPopup';
+import { Filters } from '@/types/types';
 
-const MobileSortFilterActions = ({ selectedSortingOption, filters, filteredFlightsLength }: { selectedSortingOption: SortOption, filters: any, filteredFlightsLength: number }) => {
+const MobileSortFilterActions = ({ selectedSortingOption, filters, filteredFlightsLength }: { selectedSortingOption: SortOption, filters: Filters, filteredFlightsLength: number }) => {
     const [isSortingPopupOpen, setSortingPopupOpen] = useState(false);
     const [isFilterPopupOpen, setFilterPopupOpen] = useState(false);
 

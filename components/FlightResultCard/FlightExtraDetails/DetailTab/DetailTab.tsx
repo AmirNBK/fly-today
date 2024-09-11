@@ -2,7 +2,7 @@ import React from 'react';
 import localFont from 'next/font/local';
 import FlightDetailedInfo from './FlightDetailedInfo/FlightDetailedInfo';
 import PassengersCostInfo from './PassengersCostInfo/PassengersCostInfo';
-import { DetailTabProps, FlightRouteProps, PtcFareBreakdown } from '@/types/types';
+import { DetailTabProps } from '@/types/types';
 
 const IranSans = localFont({ src: '../../../../assets/fonts/IRANSansXFaNum-Regular.ttf' });
 

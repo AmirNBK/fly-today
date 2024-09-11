@@ -91,6 +91,7 @@ const FlightResults = ({
 
                         return (
                             <FlightResultCard
+                                key={index}
                                 flightId={index}
                                 airlineName={airlineNameFa}
                                 flightRouteProps={{

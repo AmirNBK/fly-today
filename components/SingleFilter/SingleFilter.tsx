@@ -8,7 +8,6 @@ const SingleFilter: React.FC<SingleFilterProps> = ({ filterName, options, isChec
     const { selectedOptions , setSelectedOptions } = useAppContext();
 
     const [isOpen, setIsOpen] = useState(false);
-    const [range, setRange] = useState<[number, number]>([20000, 5000000]);
     const router = useRouter();
 
     // Effect to initialize selected options from the URL query parameter

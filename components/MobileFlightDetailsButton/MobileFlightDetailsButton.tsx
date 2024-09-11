@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
 import MobileFlightDetailsPopup from '../MobileFlightDetailsPopup/MobileFlightDetailsPopup';
 import { useAppContext } from '@/context/AppContext';
-import { FlightDetailsButtonProps, FlightRouteProps, PtcFareBreakdown } from '@/types/types';
+import { FlightDetailsButtonProps } from '@/types/types';
 
 const MobileFlightDetailsButton: React.FC<FlightDetailsButtonProps> = ({
     flightId,

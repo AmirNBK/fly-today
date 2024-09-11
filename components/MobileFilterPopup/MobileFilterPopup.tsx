@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import FilterSection from '../FilterSection/FilterSection';
 import useResetFilters from '@/hooks/useResetFilters';
+import { Filters } from '@/types/types';
 
 const MobileFilterPopup = ({
     closePopup,
@@ -9,7 +10,7 @@ const MobileFilterPopup = ({
     filteredFlightsLength,
 }: {
     closePopup: () => void;
-    filters: any;
+    filters: Filters;
     filteredFlightsLength: number;
 }) => {
     const [isVisible, setIsVisible] = useState(false);
