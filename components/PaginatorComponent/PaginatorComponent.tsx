@@ -30,7 +30,7 @@ const PaginatorComponent = ({ data }: { data: totalData }) => {
             <Paginator
                 first={first}
                 rows={rows}
-                totalRecords={data.pricedItineraries.length}
+                totalRecords={data.length}
                 rowsPerPageOptions={[7, 14, 21]}
                 onPageChange={onPageChange}
                 className='bg-transparent w-full'
