@@ -20,14 +20,16 @@ const FlightResults = ({
     selectedSortingOption,
     arrivalAirports,
     DepartureAirport,
-    CheckedLuggage
+    CheckedLuggage,
+    filters
 }: {
     allData: totalData,
     CurrentPage: number,
     selectedSortingOption: SortOption,
     arrivalAirports: string[],
     DepartureAirport: string[],
-    CheckedLuggage: string[]
+    CheckedLuggage: string[],
+    filters : any
 }) => {
 
     // Filter the flights based on the list of arrival airports, departure airports, and checked luggage
@@ -69,7 +71,7 @@ const FlightResults = ({
         <div className='FlightResults flex flex-col items-end w-full gap-1'>
 
             <div className=' w-full sm:hidden block'>
-                <MobileSortFilterActions selectedSortingOption={selectedSortingOption} />
+                <MobileSortFilterActions selectedSortingOption={selectedSortingOption} filters={filters} filteredFlightsLength={filteredFlights.length} />
             </div>
 
             <h2 className=' font-bold text-[#464646] text-xl'>

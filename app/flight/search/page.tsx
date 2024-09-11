@@ -28,6 +28,7 @@ const Results: FC<PageQueryParams> = ({ searchParams }) => {
                     arrivalAirports={arrivalAirports}
                     DepartureAirport={DepartureAirport}
                     CheckedLuggage={CheckedLuggage}
+                    filters={data.filter}
                 />
             </div>
             <div className="flex-[0.7] sm:block hidden">
