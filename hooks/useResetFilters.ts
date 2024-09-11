@@ -2,20 +2,30 @@ import { useRouter } from 'next/navigation';
 import { useAppContext } from '@/context/AppContext';
 
 const useResetFilters = () => {
-    const { setSelectedOptions } = useAppContext();
+    const { setIsFilterReset } = useAppContext();
     const router = useRouter();
 
     const resetFilters = () => {
-        setSelectedOptions([]);
+        setIsFilterReset((prev: any) => !prev);
 
-        // Reset the URL by removing all query parameters
+        // Get the current URL search parameters
         const params = new URLSearchParams(window.location.search);
-        
-        params.forEach((_, key) => {
-            params.delete(key);
+
+        // Create a list of parameters to retain
+        const retainParams = ['departure', 'arrival' , 'sort'];
+
+        // Filter out all parameters except the ones we want to retain
+        const retainedParams = new URLSearchParams();
+        retainParams.forEach(param => {
+            const value = params.get(param);
+            if (value) {
+                retainedParams.set(param, value);
+            }
         });
 
-        router.push(window.location.pathname);
+        const updatedUrl = `${window.location.pathname}?${retainedParams.toString()}`;
+
+        router.push(updatedUrl);
     };
 
     return resetFilters;
