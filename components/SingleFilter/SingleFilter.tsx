@@ -73,7 +73,7 @@ const SingleFilter: React.FC<SingleFilterProps> = ({ filterName, options, isChec
                                     onChange={onFilterOptionsChange}
                                     checked={selectedOptions.includes(option.value)}
                                 />
-                                <label htmlFor={option.value} className="ml-2 cursor-pointer text-sm">
+                                <label htmlFor={option.value} className="ml-2 cursor-pointer text-sm rtl">
                                     {option.label}
                                 </label>
                             </div>

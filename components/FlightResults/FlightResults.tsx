@@ -75,49 +75,60 @@ const FlightResults = ({
             </div>
 
             <div className='FlightResults__results w-full mt-6 flex flex-col gap-10'>
-                {flightsData.map((item, index) => {
-                    const flightSegment = item.originDestinationOptions[0].flightSegments[0];
+                {filteredFlights.length > 0 ?
+                    flightsData.map((item, index) => {
+                        const flightSegment = item.originDestinationOptions[0].flightSegments[0];
 
-                    const airlineNameFa = airlinesDictionary[item.validatingAirlineCode] || item.validatingAirlineCode;
-                    const originCity = airportsDictionary[flightSegment.departureAirportLocationCode] || flightSegment.departureAirportLocationCode;
-                    const destinationCity = airportsDictionary[flightSegment.arrivalAirportLocationCode] || flightSegment.arrivalAirportLocationCode;
-                    const startTime = extractDateTimeInfo(flightSegment.departureDateTime);
-                    const endTime = extractDateTimeInfo(flightSegment.arrivalDateTime);
-                    const estimatedTime = convertTimeToPersianFormat(flightSegment.journeyDuration);
+                        const airlineNameFa = airlinesDictionary[item.validatingAirlineCode] || item.validatingAirlineCode;
+                        const originCity = airportsDictionary[flightSegment.departureAirportLocationCode] || flightSegment.departureAirportLocationCode;
+                        const destinationCity = airportsDictionary[flightSegment.arrivalAirportLocationCode] || flightSegment.arrivalAirportLocationCode;
+                        const startTime = extractDateTimeInfo(flightSegment.departureDateTime);
+                        const endTime = extractDateTimeInfo(flightSegment.arrivalDateTime);
+                        const estimatedTime = convertTimeToPersianFormat(flightSegment.journeyDuration);
 
-                    return (
-                        <FlightResultCard
-                            flightId={index}
-                            airlineName={airlineNameFa}
-                            flightRouteProps={{
-                                originCity: originCity.cityFa,
-                                destinationCity: destinationCity.cityFa,
-                                originCityAirportName: originCity.name,
-                                destinationCityAirportName: destinationCity.name,
-                                startTime: startTime,
-                                endTime: endTime,
-                                estimatedTime: estimatedTime,
-                            }}
-                            ticketDetailsProps={{
-                                price: item.airItineraryPricingInfo.ptcFareBreakdown[0].passengerFare.totalFare / 10,
-                                currency: "تومان",
-                            }}
-                            flightOptionsProps={{
-                                isCharter: item.isCharter,
-                                classType: getCabinClass(flightSegment.cabinClassCode),
-                                availableSeats: flightSegment.seatsRemaining,
-                                flightNumber: flightSegment.operatingAirline.flightNumber || 7856,
-                                provider: airlineNameFa,
-                            }}
-                            pricingBreakdownPerPassenger={item.airItineraryPricingInfo.ptcFareBreakdown}
-                            priceFare={item.airItineraryPricingInfo.itinTotalFare.totalFare}
-                            isRefundable={item.refundMethod}
-                            airplaneModel={flightSegment.operatingAirline.equipment}
-                            allowedBaggage={flightSegment.baggage}
-                            fareClass={flightSegment.cabinClassCode}
-                        />
-                    )
-                })}
+                        return (
+                            <FlightResultCard
+                                flightId={index}
+                                airlineName={airlineNameFa}
+                                flightRouteProps={{
+                                    originCity: originCity.cityFa,
+                                    destinationCity: destinationCity.cityFa,
+                                    originCityAirportName: originCity.name,
+                                    destinationCityAirportName: destinationCity.name,
+                                    startTime: startTime,
+                                    endTime: endTime,
+                                    estimatedTime: estimatedTime,
+                                }}
+                                ticketDetailsProps={{
+                                    price: item.airItineraryPricingInfo.ptcFareBreakdown[0].passengerFare.totalFare / 10,
+                                    currency: "تومان",
+                                }}
+                                flightOptionsProps={{
+                                    isCharter: item.isCharter,
+                                    classType: getCabinClass(flightSegment.cabinClassCode),
+                                    availableSeats: flightSegment.seatsRemaining,
+                                    flightNumber: flightSegment.operatingAirline.flightNumber || 7856,
+                                    provider: airlineNameFa,
+                                }}
+                                pricingBreakdownPerPassenger={item.airItineraryPricingInfo.ptcFareBreakdown}
+                                priceFare={item.airItineraryPricingInfo.itinTotalFare.totalFare}
+                                isRefundable={item.refundMethod}
+                                airplaneModel={flightSegment.operatingAirline.equipment}
+                                allowedBaggage={flightSegment.baggage}
+                                fareClass={flightSegment.cabinClassCode}
+                            />
+                        )
+                    })
+                    :
+                    <div className="flex flex-col items-center justify-center h-64">
+                        <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <h3 className="mt-4 text-lg font-medium text-gray-800">هیچ پروازی پیدا نشد</h3>
+                        <p className="mt-2 text-sm text-gray-500">فيلترهای جستجوی خود را تنظیم کنید یا بعداً دوباره بررسی کنید.</p>
+                    </div>
+                }
+
             </div>
 
             <PaginatorComponent data={allData} />

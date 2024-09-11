@@ -37,7 +37,6 @@ const FlightFilters = ({filters} : {filters : any}) => {
 
             <SingleFilter filterName='ميزان بار پرواز' urlName={filters.baggage[0].filterName} options={checkedLuggageOptions} isCheckboxFilter />
 
-
         </div>
     );
 };
