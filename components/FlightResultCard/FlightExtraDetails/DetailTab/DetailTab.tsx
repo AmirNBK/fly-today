@@ -2,7 +2,7 @@ import React from 'react';
 import localFont from 'next/font/local';
 import FlightDetailedInfo from './FlightDetailedInfo/FlightDetailedInfo';
 import PassengersCostInfo from './PassengersCostInfo/PassengersCostInfo';
-import { DetailTabProps } from '@/types/types';
+import { DetailTabProps, CostItem } from '@/types/types';
 
 const IranSans = localFont({ src: '../../../../assets/fonts/IRANSansXFaNum-Regular.ttf' });
 
@@ -25,22 +25,24 @@ const DetailTab: React.FC<DetailTabProps> = ({
     fareClass,
 }) => {
 
+    // Convert price from Rial to Toman
+    const toToman = (rial: number) => rial / 10;
+
     // Maps over each passenger and generates a cost for each
-    const costItems = pricingBreakdownPerPassenger.map(item => {
+    const costItems: CostItem[] = pricingBreakdownPerPassenger.map(item => {
         const label = item.passengerTypeQuantity.passengerType === 'Adt' ? 'بزرگسال' :
             item.passengerTypeQuantity.passengerType === 'Chd' ? 'کودک' :
                 'نوزاد';
-        const amount = `${item.passengerFare.totalFare.toLocaleString()} تومان`;
+        const amount = `${toToman(item.passengerFare.totalFare).toLocaleString()} تومان`;
         return { label: `x ${item.passengerTypeQuantity.quantity} ${label}`, amount };
     });
 
     costItems.push({
         label: 'مجموع :',
-        amount: `${priceFare.toLocaleString()} تومان`,
+        amount: `${toToman(priceFare).toLocaleString()} تومان`,
         isBold: true,
         isHighlight: true
     });
-
 
     return (
         <div className={`${IranSans.className} DetailTab flex flex-col items-start mt-3`}>
