@@ -1,14 +1,18 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { totalData } from '@/types/types';
 
-const PaginatorComponent = ({ data }: { data: totalData }) => {
+const PaginatorComponent = ({ data, currentPage }: { data: totalData, currentPage: number }) => {
     const router = useRouter();
-    const searchParams = useSearchParams(); // Access the current query parameters
     const [first, setFirst] = useState<number>(0);
     const [rows, setRows] = useState<number>(7);
+
+    // Set the initial state based on the currentPage prop
+    useEffect(() => {
+        setFirst((currentPage - 1) * rows); // Calculate the offset for the paginator
+    }, [currentPage, rows]);
 
     const onPageChange = (event: PaginatorPageChangeEvent) => {
         const newPage = (event.first / event.rows) + 1;
@@ -16,7 +20,7 @@ const PaginatorComponent = ({ data }: { data: totalData }) => {
         setRows(event.rows);
 
         // Create a new URLSearchParams instance to manipulate the query string
-        const params = new URLSearchParams(searchParams.toString());
+        const params = new URLSearchParams(window.location.search);
 
         // Update the page parameter
         params.set('page', newPage.toString());

@@ -131,7 +131,7 @@ const FlightResults = ({
 
             </div>
 
-            <PaginatorComponent data={filteredFlights} />
+            <PaginatorComponent data={filteredFlights} currentPage={CurrentPage} />
         </div>
     );
 };
