@@ -69,8 +69,11 @@ const FlightResultCard: React.FC<FlightResultCardProps> = ({
                     </div>
 
                     <div>
-                    <TicketPrice {...ticketDetailsProps} />
+                    <TicketPrice {...ticketDetailsProps} flightId={flightId} />
+                    
                     </div>
+
+                    
             </div>
 
         </>

@@ -8,6 +8,8 @@ import useAirlineDictionary from '@/hooks/useAirlineDictionary';
 import useAirportDictionary from '@/hooks/useAirportDictionary';
 import { totalData } from '@/types/types';
 import { sortFlights, SortOption } from '@/utils/sortFlightsUtils';
+import Image from 'next/image';
+import filter from '@/assets/icons/filter.svg'
 
 const FlightResults = ({
     allData,
@@ -70,6 +72,15 @@ const FlightResults = ({
                 <p className='rtl text-sm'>
                     {filteredFlights.length} پرواز یافت شد . سه‌شنبه، 25 مهر 1402
                 </p>
+            </div>
+
+            <div className='flex flex-row w-full'>
+                <button className='flex flex-row-reverse w-1/2 items-center gap-2 bg-white p-2 justify-center rounded-sm'>
+                    <Image src={filter} alt='filter'/>
+                    <p>
+                    فیلتر کردن
+                    </p>
+                </button>
             </div>
 
             <div className='FlightResults__results w-full mt-6 flex  flex-col sm:gap-10 gap-5'>
