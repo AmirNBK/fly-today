@@ -1,62 +1,54 @@
-# Fly-today developement task
+# FlyToday — Frontend Development Task
 
-### Overview
+A frontend implementation exercise focused on building a flight-results experience with search, filtering, sorting, detailed flight information, and responsive UI.
 
-Features
-- Search and Filter Flights: Easily search for flights based on various criteria and filter results to find the best options.
-- Detailed Flight Information: Access comprehensive details about each flight, including price, duration, and baggage information.
-- Responsive Design: Optimized for both desktop and mobile devices.
-- Interactive UI: Features sortable tables and pagination for enhanced navigation.
+> This repository is a personal/frontend development task and does not contain proprietary production code from FlyToday.
 
-### Technologies Used
-- Next.js: A React framework for building server-rendered applications with ease.
-- Tailwind CSS: A utility-first CSS framework for creating custom designs efficiently.
-- TypeScript: Adds static typing to JavaScript, enhancing code quality and maintainability.
-- PrimeReact: A collection of UI components for React, providing a rich set of features and styles.
+## Overview
 
-### Deployment
+The project explores a flight-results interface with:
 
-The project is deployed on Netlify and can be accessed at: [https://fly-today.netlify.app/](https://fly-today.netlify.app/).
-- The Continuous Integration and Continuous Deployment (CI/CD) processes for this project is handled by Netlify, ensuring that updates are automatically built and deployed.
+- Flight search and filtering
+- Flight detail presentation, including price, duration, and baggage information
+- Sorting and pagination
+- Responsive desktop and mobile layouts
+- Interactive UI patterns for browsing flight options
 
+## Tech Stack
 
-### Getting Started
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- PrimeReact
 
-#### Prerequisites
-Ensure you have the following installed on your machine:
+## Getting Started
 
-- Node.js (>= 14.x.x)
-- npm
-### Installation
-Clone the repository:
-```
-git clone https://github.com/AmirNBK/fly-today
-```
+Install dependencies:
 
-Navigate to the project directory:
-```
-cd fly-today
-```
-
-Install the dependencies:
-```
+```bash
 npm install
 ```
-Development
-To start the development server, run:
-```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
-This will start the development server at http://localhost:3000.
 
-Building
-To build the project for production, run:
-```
+Open `http://localhost:3000` in your browser.
+
+## Build
+
+```bash
 npm run build
+npm start
 ```
-This will create an optimized production build in the .next directory.
 
+## Deployment
 
-###  Contact
-For any questions or feedback, please contact:
-amircr7h3@gmail.com
+The project was deployed as part of the development task workflow.
+
+## About
+
+Built by AmirHossein Norbakhsh as a frontend development project demonstrating modern React/Next.js implementation, UI composition, and responsive flight-results experiences.
